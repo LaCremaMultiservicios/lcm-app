@@ -1,6 +1,6 @@
-/* ── La Crema Multiservicios — Service Worker v3 ──
+/* ── La Crema Multiservicios — Service Worker v4 ──
    Bump CACHE_VERSION to force update on all devices     */
-const CACHE_VERSION = 'lcm-v3';
+const CACHE_VERSION = 'lcm-v4';
 const ASSETS = [
   './',
   './index.html',
