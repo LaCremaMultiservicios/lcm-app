@@ -269,7 +269,7 @@
     #servicios { background: var(--bg-deep); }
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(310px, 100%), 1fr));
       gap: 20px;
     }
     .service-card {
@@ -308,12 +308,12 @@
       background: rgba(255,255,255,0.04); border-radius: 10px;
       border: 1px solid rgba(255,255,255,0.05);
     }
-    .spr-label { font-size: 13px; color: var(--white-soft); font-weight: 500; }
+    .spr-label { font-size: 13px; color: var(--white-soft); font-weight: 500; overflow-wrap: break-word; word-break: break-word; flex: 1; min-width: 0; }
     .spr-value {
       font-size: 13px; font-weight: 700;
       background: linear-gradient(90deg, var(--blue-bright), var(--cyan));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; white-space: nowrap;
+      background-clip: text; white-space: nowrap; flex-shrink: 0;
     }
     .service-tag {
       display: inline-flex;
@@ -395,7 +395,7 @@
     .pap-body { flex: 1; overflow-y: auto; padding: 20px; }
     .pap-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(200px, calc(50% - 8px)), 1fr));
       gap: 16px;
     }
     .pap-card {
@@ -406,7 +406,7 @@
     }
     .pap-card:hover { border-color: var(--border-bright); transform: translateY(-2px); }
     .pap-card-cat { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--cyan); }
-    .pap-card-name { font-size: 13px; font-weight: 700; color: #E8F0FF; line-height: 1.35; min-height: 36px; }
+    .pap-card-name { font-size: 13px; font-weight: 700; color: #E8F0FF; line-height: 1.35; min-height: 36px; overflow-wrap: break-word; word-break: break-word; }
     .pap-barcode-wrap { background: #fff; border-radius: 6px; padding: 6px 4px 2px; display: flex; flex-direction: column; align-items: center; }
     .pap-barcode-wrap svg { max-width: 100%; height: auto; }
     .pap-price-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 4px; }
@@ -467,7 +467,7 @@
     .pap-prices-info .pap-card-name { font-size: 11px; font-weight: 700; color: #E8F0FF; line-height: 1.3; }
 
     /* Plastificado cards */
-    .pap-plast-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+    .pap-plast-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 16px; }
     .pap-plast-card {
       border-radius: 14px; overflow: hidden; border: 1px solid var(--border);
       transition: transform .2s, border-color .2s;
@@ -545,7 +545,7 @@
     #precios { background: var(--bg-void); }
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
       gap: 20px;
     }
     .price-card {
@@ -590,7 +590,7 @@
     #nosotros { background: var(--bg-deep); }
     .pillars-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
       gap: 20px;
     }
     .pillar {
@@ -656,7 +656,7 @@
 
     .contact-items {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(230px, 100%), 1fr));
       gap: 14px; width: 100%;
     }
     .contact-item {
@@ -733,6 +733,113 @@
     [data-aos].visible { opacity: 1; transform: translateY(0); }
     .d1 { transition-delay: .08s; } .d2 { transition-delay: .16s; }
     .d3 { transition-delay: .24s; } .d4 { transition-delay: .32s; }
+
+    /* ─── GLOBAL OVERFLOW GUARD ──────────────────── */
+    html, body { overflow-x: hidden; max-width: 100vw; }
+    * { min-width: 0; }
+
+    /* ─── MOBILE — ≤ 640px ──────────────────────── */
+    @media (max-width: 640px) {
+      /* Nav: hide name on very tight screens */
+      .nav-name { font-size: 17px; }
+      .nav-cta  { padding: 8px 14px; font-size: 12px; }
+
+      /* Sections */
+      .section-wrap { padding: 52px 1rem; }
+      .section-desc { margin-bottom: 32px; }
+
+      /* Services grid → 1 column */
+      .services-grid { grid-template-columns: 1fr; }
+      .service-price-row { flex-wrap: wrap; gap: 2px; }
+      .spr-label { flex: 1 1 100%; }
+      .spr-value { flex: 1 1 100%; text-align: right; font-size: 14px; }
+
+      /* Pricing grid → 1 column */
+      .pricing-grid { grid-template-columns: 1fr; }
+      .price-row { flex-wrap: wrap; gap: 2px; }
+      .price-row-label { flex: 1 1 100%; }
+      .price-row-value { flex: 1 1 100%; text-align: right; }
+
+      /* Pillars → 1 column */
+      .pillars-grid { grid-template-columns: 1fr; }
+
+      /* Contact */
+      .contact-inner  { padding: 22px 14px; gap: 20px; }
+      .contact-items  { grid-template-columns: 1fr; }
+      .contact-item   { padding: 13px 14px; }
+      .contact-item-value { font-size: 12px; word-break: break-all; }
+
+      /* Bank account numbers */
+      .bank-acc  { font-size: 11px; letter-spacing: .02em; }
+      .bank-info { flex-wrap: wrap; }
+      .bank-name { min-width: 0; }
+
+      /* Admin bar */
+      #admin-bar { left: 12px; right: 12px; width: auto; transform: none; flex-wrap: wrap; gap: 8px; }
+
+      /* ── Papelería header: stack search on 2nd row ── */
+      .pap-header { padding: 10px 14px; gap: 8px; }
+      .pap-search { order: 4; flex: 1 1 calc(100% - 0px); max-width: none; min-width: 0; font-size: 14px; }
+
+      /* ── Filter bar: horizontal scroll, no wrap ── */
+      .pap-filter-bar {
+        flex-wrap: nowrap; overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        padding: 8px 14px; gap: 6px;
+      }
+      .pap-filter-bar::-webkit-scrollbar { display: none; }
+      .pap-cat-btn { flex-shrink: 0; scroll-snap-align: start; font-size: 10px; padding: 4px 10px; }
+
+      /* ── Papelería body + grid: 2 columns ── */
+      .pap-body { padding: 10px; }
+      .pap-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+      /* Card names: wrap, smaller font */
+      .pap-card-name {
+        font-size: 11.5px; line-height: 1.3;
+        overflow-wrap: break-word; word-break: break-word;
+        min-height: unset;
+      }
+      .pap-card-catalog .pap-card-name { font-size: 11px; padding: 8px 8px 0; }
+      .pap-card-catalog .pap-card-cat  { padding: 3px 8px 0; }
+      .pap-price { font-size: 15px; }
+      .pap-price-label { font-size: 9px; }
+
+      /* Price-view card: tighter */
+      .pap-card-prices { padding: 9px; gap: 6px; }
+      .pap-img-mini { width: 40px; height: 40px; font-size: 20px; }
+
+      /* Plastificado grid: 1 column */
+      .pap-plast-grid { grid-template-columns: 1fr; }
+      .pap-plast-img  { height: 120px; font-size: 48px; }
+
+      /* View tabs */
+      .pap-view-btn { font-size: 11px; padding: 9px 4px; }
+
+      /* Footer */
+      footer { flex-direction: column; align-items: flex-start; gap: 10px; padding: 24px 1rem; }
+      .footer-links { flex-wrap: wrap; gap: 14px; }
+    }
+
+    /* ─── VERY SMALL — ≤ 375px ──────────────────── */
+    @media (max-width: 375px) {
+      .nav-name { display: none; }
+      .hero-badge { font-size: 9.5px; padding: 5px 12px; text-align: center; }
+      .pap-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+      .pap-card-name { font-size: 10.5px; }
+      .pap-price { font-size: 14px; }
+      .contact-item-value { font-size: 11.5px; }
+    }
+
+    /* ─── TABLET — 641–1024px ────────────────────── */
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .services-grid  { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid   { grid-template-columns: repeat(2, 1fr); }
+      .pillars-grid   { grid-template-columns: repeat(2, 1fr); }
+      .pap-grid       { grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); }
+      .pap-plast-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    }
   </style>
 </head>
 <body>
