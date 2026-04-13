@@ -1,0 +1,2616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Crema Multiservicios</title>
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1E5FFF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="La Crema" />
+  <!-- Icons - all sizes -->
+  <link rel="icon" type="image/png" sizes="16x16"   href="icons/icon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32"   href="icons/icon-32.png" />
+  <link rel="icon" type="image/png" sizes="96x96"   href="icons/icon-96.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <!-- Apple / iOS -->
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png" />
+  <!-- SEO & Domain -->
+  <link rel="canonical" href="https://lacremamultiservicios.netlify.app/" />
+  <meta name="description" content="Centro de Internet & Servicios Digitales y de Aprendizaje. Impresiones, papelería, trámites en línea. Sabana Perdida, Santo Domingo Norte." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lacremamultiservicios.netlify.app/" />
+  <meta property="og:title" content="La Crema Multiservicios" />
+  <meta property="og:description" content="Centro de Internet & Servicios Digitales y de Aprendizaje. Sabana Perdida, Santo Domingo Norte, RD." />
+  <meta property="og:image" content="https://lacremamultiservicios.netlify.app/icons/icon-512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="La Crema Multiservicios" />
+  <meta name="twitter:description" content="Centro de Internet & Servicios Digitales y de Aprendizaje." />
+  <meta name="twitter:image" content="https://lacremamultiservicios.netlify.app/icons/icon-512.png" />
+  <!-- Microsoft Tiles -->
+  <meta name="msapplication-TileColor" content="#1E5FFF" />
+  <meta name="msapplication-TileImage" content="icons/icon-144.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── VARIABLES ────────────────────────────────── */
+    :root {
+      --bg-void:       #05080F;
+      --bg-deep:       #07102A;
+      --bg-hero:       #061028;
+      --bg-card:       #0B1630;
+      --bg-card-hover: #0F1E40;
+      --blue-pearl:    #0E2154;
+      --blue-mid:      #1A3A7A;
+      --blue-glow:     #1E5FFF;
+      --blue-bright:   #4D8FFF;
+      --cyan:          #00C8FF;
+      --white:         #FFFFFF;
+      --white-soft:    #D8E4FF;
+      --white-dim:     #7E9AC4;
+      --border:        rgba(30,95,255,0.20);
+      --border-bright: rgba(30,95,255,0.55);
+      --radius-sm: 12px; --radius-md: 18px;
+      --radius-lg: 22px; --radius-xl: 32px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-void);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1rem,5vw,3rem); height: 66px;
+      background: rgba(5,8,15,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-ring {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-glow), var(--cyan));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Dancing Script', cursive; font-size: 18px;
+      font-weight: 700; color: #fff;
+      box-shadow: 0 0 16px rgba(30,95,255,0.55);
+    }
+    .nav-name {
+      font-family: 'Dancing Script', cursive;
+      font-size: 20px; color: var(--white);
+    }
+    .nav-name span { color: var(--cyan); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--white-dim);
+      font-size: 13.5px; font-weight: 500; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--blue-glow), var(--cyan));
+      color: #fff; border: none; cursor: pointer;
+      padding: 9px 22px; border-radius: 999px;
+      font-size: 13px; font-weight: 600;
+      box-shadow: 0 0 20px rgba(30,95,255,0.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 30px rgba(30,95,255,0.65); }
+    .pwa-btn { background: linear-gradient(135deg, #F07C10, #E05000); }
+    .pwa-btn:hover { box-shadow: 0 0 30px rgba(240,124,16,0.65); }
+    @media (max-width: 700px) { .nav-links { display: none; } }
+
+    /* ─── HERO ────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 100px clamp(1rem,5vw,3rem) 80px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 100% 70% at 50% 100%, #071640 0%, transparent 60%),
+        radial-gradient(ellipse 80% 50% at 50% 40%,  #0A1E50 0%, transparent 65%),
+        linear-gradient(180deg, #061028 0%, #040C20 100%);
+    }
+    #stars-canvas {
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 0;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(30,95,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,95,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 75%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(30,95,255,0.12);
+      border: 1px solid var(--border-bright);
+      border-radius: 999px; padding: 6px 18px;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em;
+      color: var(--cyan); text-transform: uppercase; margin-bottom: 32px;
+    }
+    .hero-badge::before {
+      content: ''; width: 7px; height: 7px;
+      background: var(--cyan); border-radius: 50%;
+      box-shadow: 0 0 8px var(--cyan);
+      animation: blink 2s infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+    }
+
+    /* Title — letters are split via JS */
+    .hero-main-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--white);
+      text-shadow:
+        0 0 40px rgba(100,180,255,0.5),
+        0 0 80px rgba(30,95,255,0.25);
+      margin-bottom: 18px;
+      white-space: nowrap;
+    }
+    @media (max-width: 600px) {
+      .hero-main-title { white-space: normal; }
+    }
+
+    /* Each letter span */
+    .title-letter {
+      display: inline-block;
+      transition: opacity 0.15s ease, transform 0.15s ease, filter 0.15s ease;
+      transform-origin: center center;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.75rem,2vw,0.95rem);
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--white-soft); font-weight: 400;
+      margin-bottom: 48px; opacity: 0.85;
+    }
+    .hero-btns {
+      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-glow), var(--cyan));
+      color: #fff; border: none; cursor: pointer;
+      padding: 14px 34px; border-radius: 999px;
+      font-size: 15px; font-weight: 700;
+      box-shadow: 0 0 30px rgba(30,95,255,0.45);
+      transition: transform .2s, box-shadow .2s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(30,95,255,0.7); }
+    .btn-outline {
+      background: transparent; color: var(--white-soft);
+      border: 1px solid var(--border-bright);
+      padding: 14px 34px; border-radius: 999px;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      transition: background .2s, color .2s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-outline:hover { background: rgba(30,95,255,0.12); color: var(--white); }
+
+    /* ─── STATS STRIP ─────────────────────────────── */
+    .stats-strip {
+      position: relative; z-index: 1;
+      background: var(--bg-deep);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex; flex-wrap: wrap; justify-content: center;
+    }
+    .stat-item {
+      flex: 1; min-width: 140px; max-width: 220px;
+      padding: 26px 20px; text-align: center;
+      border-right: 1px solid var(--border);
+      transition: background .2s;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: rgba(30,95,255,0.06); }
+    .stat-num {
+      font-size: 1.6rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--blue-bright), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; line-height: 1; margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 11px; font-weight: 500; color: var(--white-dim);
+      letter-spacing: 0.07em; text-transform: uppercase;
+    }
+
+    /* ─── SECTIONS SHARED ─────────────────────────── */
+    section { position: relative; z-index: 1; }
+    .section-wrap {
+      max-width: 1180px; margin: 0 auto;
+      padding: 90px clamp(1rem,5vw,3rem);
+    }
+    .section-eyebrow {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--cyan); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem,3.5vw,2.5rem); font-weight: 800;
+      line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 14px;
+    }
+    .section-title .accent {
+      background: linear-gradient(90deg, var(--blue-bright), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-desc {
+      color: var(--white-dim); font-size: 1rem;
+      max-width: 540px; line-height: 1.65; margin-bottom: 52px;
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-bright), transparent);
+      position: relative; z-index: 1;
+    }
+
+    /* ─── SERVICES ────────────────────────────────── */
+    #servicios { background: var(--bg-deep); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 32px 28px;
+      transition: transform .25s, border-color .25s, box-shadow .25s, background .25s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue-glow), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .service-card:hover {
+      transform: translateY(-4px); border-color: var(--border-bright);
+      background: var(--bg-card-hover);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(30,95,255,0.12);
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon-wrap {
+      width: 54px; height: 54px;
+      background: rgba(30,95,255,0.12); border: 1px solid rgba(30,95,255,0.25);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 20px; transition: background .2s;
+    }
+    .service-card:hover .service-icon-wrap {
+      background: rgba(30,95,255,0.22); border-color: rgba(30,95,255,0.5);
+    }
+    .service-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+    .service-desc { font-size: .875rem; color: var(--white-dim); line-height: 1.65; margin-bottom: 18px; }
+    .service-prices { display: flex; flex-direction: column; gap: 9px; }
+    .service-price-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 9px 14px;
+      background: rgba(255,255,255,0.04); border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .spr-label { font-size: 13px; color: var(--white-soft); font-weight: 500; }
+    .spr-value {
+      font-size: 13px; font-weight: 700;
+      background: linear-gradient(90deg, var(--blue-bright), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; white-space: nowrap;
+    }
+    .service-tag {
+      display: inline-flex;
+      background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.2);
+      color: var(--cyan); border-radius: 999px; padding: 4px 12px;
+      font-size: 11px; font-weight: 600; letter-spacing: .04em;
+      text-transform: uppercase; margin: 3px 4px 3px 0;
+    }
+
+    /* ─── CONTACT LINKS ──────────────────────────── */
+    .contact-link { text-decoration: none; color: inherit; cursor: pointer; transition: background .2s, border-color .2s; }
+    .contact-link:hover { background: rgba(30,95,255,0.08); border-color: rgba(30,95,255,0.35); }
+    .link-badge {
+      display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      background: rgba(30,95,255,0.18); border: 1px solid rgba(30,95,255,0.35); color: var(--blue-bright);
+      border-radius: 4px; padding: 1px 5px; margin-left: 6px; vertical-align: middle;
+    }
+    .link-badge.ig { background: rgba(225,48,108,0.18); border-color: rgba(225,48,108,0.4); color: #F0509A; }
+    .link-badge.tt { background: rgba(0,242,234,0.12); border-color: rgba(0,242,234,0.35); color: #00F2EA; }
+    .link-badge.yt { background: rgba(255,0,0,0.15); border-color: rgba(255,0,0,0.35); color: #FF4444; }
+
+    /* ─── FOOTER SOCIAL BAR ───────────────────────── */
+    .footer-social { display: flex; justify-content: center; gap: 12px; margin: 16px 0 8px; }
+    .fsoc-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px; border-radius: 10px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      transition: transform .2s, background .2s, box-shadow .2s;
+      text-decoration: none;
+    }
+    .fsoc-btn:hover { transform: translateY(-3px); background: rgba(255,255,255,0.12); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+
+    /* ─── PAPELERÍA SUBPAGE ──────────────────────── */
+    .pap-overlay {
+      position: fixed; inset: 0; z-index: 10000;
+      background: #030B1A;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      animation: papFadeIn .22s ease;
+    }
+    @keyframes papFadeIn { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
+    .pap-header {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      padding: 14px 20px; border-bottom: 1px solid var(--border);
+      background: rgba(11,22,48,0.95); backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 2;
+    }
+    .pap-back {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(30,95,255,0.12); border: 1px solid rgba(30,95,255,0.3);
+      color: var(--blue-bright); border-radius: 8px; padding: 8px 14px;
+      cursor: pointer; font-size: 13px; font-weight: 700; white-space: nowrap;
+      transition: background .2s;
+    }
+    .pap-back:hover { background: rgba(30,95,255,0.25); }
+    .pap-header-center { display: flex; flex-direction: column; flex: 1; }
+    .pap-header-title { font-size: 16px; font-weight: 800; color: #fff; line-height: 1.2; }
+    .pap-header-sub { font-size: 11px; color: var(--cyan); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+    .pap-search {
+      flex: 1; min-width: 180px; max-width: 320px;
+      background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 14px; color: #fff; font-size: 13px;
+      outline: none; transition: border-color .2s;
+    }
+    .pap-search:focus { border-color: var(--blue-bright); }
+    .pap-filter-bar {
+      display: flex; gap: 8px; padding: 10px 20px; flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(11,22,48,0.6);
+    }
+    .pap-cat-btn {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white-dim); border-radius: 999px; padding: 5px 14px;
+      font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap;
+      transition: background .2s, color .2s, border-color .2s;
+      text-transform: uppercase; letter-spacing: .04em;
+    }
+    .pap-cat-btn.active, .pap-cat-btn:hover { background: rgba(30,95,255,0.22); border-color: rgba(30,95,255,0.5); color: var(--blue-bright); }
+    .pap-body { flex: 1; overflow-y: auto; padding: 20px; }
+    .pap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .pap-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 14px 14px;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: border-color .2s, transform .2s;
+    }
+    .pap-card:hover { border-color: var(--border-bright); transform: translateY(-2px); }
+    .pap-card-cat { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--cyan); }
+    .pap-card-name { font-size: 13px; font-weight: 700; color: #E8F0FF; line-height: 1.35; min-height: 36px; }
+    .pap-barcode-wrap { background: #fff; border-radius: 6px; padding: 6px 4px 2px; display: flex; flex-direction: column; align-items: center; }
+    .pap-barcode-wrap svg { max-width: 100%; height: auto; }
+    .pap-price-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 4px; }
+    .pap-price-label { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--white-dim); letter-spacing: .05em; }
+    .pap-price {
+      font-size: 18px; font-weight: 900; color: var(--cyan);
+      letter-spacing: -.02em; min-width: 60px; text-align: right;
+    }
+    .pap-price[contenteditable="true"] { background: rgba(0,200,255,0.08); border-radius: 4px; padding: 2px 6px; }
+    .pap-card-hidden { display: none !important; }
+
+    /* Papelería card tab buttons */
+    .pap-card-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .pap-card-tab {
+      background: rgba(30,95,255,0.12); border: 1px solid rgba(30,95,255,0.3);
+      color: var(--blue-bright); border-radius: 8px; padding: 6px 12px;
+      font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap;
+      transition: background .2s, color .2s;
+    }
+    .pap-card-tab:hover { background: rgba(30,95,255,0.28); color: #fff; }
+    .pap-card-tab--hl { background: rgba(240,124,16,0.15); border-color: rgba(240,124,16,0.4); color: #F07C10; }
+    .pap-card-tab--hl:hover { background: rgba(240,124,16,0.30); }
+
+    /* View tab bar inside subpage */
+    .pap-view-tabs { display: flex; border-bottom: 1px solid var(--border); background: rgba(11,22,48,0.8); }
+    .pap-view-btn {
+      flex: 1; padding: 11px 8px; background: none; border: none; cursor: pointer;
+      font-size: 12px; font-weight: 700; color: var(--white-dim); letter-spacing: .03em;
+      border-bottom: 2.5px solid transparent; transition: color .2s, border-color .2s, background .2s;
+    }
+    .pap-view-btn:hover { color: #fff; background: rgba(255,255,255,0.04); }
+    .pap-view-btn.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+
+    /* Catalog cards (large image + name only) */
+    .pap-card-catalog { padding: 0 0 12px; overflow: hidden; }
+    .pap-img-wrap { position: relative; width: 100%; aspect-ratio: 1/1; overflow: hidden; border-radius: 10px 10px 0 0; }
+    .pap-img-placeholder {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-size: 52px;
+    }
+    .pap-real-img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      transition: opacity .3s;
+    }
+    .pap-card-catalog .pap-card-name { padding: 10px 12px 0; font-size: 12px; font-weight: 700; color: #E8F0FF; line-height: 1.35; }
+    .pap-card-catalog .pap-card-cat  { padding: 4px 12px 0; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--cyan); }
+
+    /* Price cards (mini image left + barcode + price) */
+    .pap-card-prices { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .pap-prices-top { display: flex; align-items: center; gap: 10px; }
+    .pap-img-mini {
+      width: 48px; height: 48px; border-radius: 8px; overflow: hidden; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 24px; position: relative;
+    }
+    .pap-img-mini .pap-real-img { border-radius: 8px; }
+    .pap-prices-info { flex: 1; }
+    .pap-prices-info .pap-card-cat { margin-bottom: 2px; }
+    .pap-prices-info .pap-card-name { font-size: 11px; font-weight: 700; color: #E8F0FF; line-height: 1.3; }
+
+    /* Plastificado cards */
+    .pap-plast-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+    .pap-plast-card {
+      border-radius: 14px; overflow: hidden; border: 1px solid var(--border);
+      transition: transform .2s, border-color .2s;
+    }
+    .pap-plast-card:hover { transform: translateY(-3px); border-color: var(--border-bright); }
+    .pap-plast-img {
+      width: 100%; height: 160px; display: flex; align-items: center; justify-content: center;
+      font-size: 64px; position: relative; overflow: hidden;
+    }
+    .pap-plast-img .pap-real-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .pap-plast-body { padding: 14px; background: var(--bg-card); }
+    .pap-plast-name { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .pap-plast-desc { font-size: 11px; color: var(--white-dim); line-height: 1.4; margin-bottom: 10px; }
+    .pap-plast-price { display: flex; justify-content: space-between; align-items: center; }
+    .pap-plast-price-val { font-size: 20px; font-weight: 900; color: var(--cyan); }
+    .pap-plast-price-label { font-size: 10px; font-weight: 700; color: var(--white-dim); text-transform: uppercase; }
+
+    /* ─── ADMIN BAR ───────────────────────────────── */
+    #admin-bar {
+      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+      background: #0A1628; border: 1.5px solid rgba(240,124,16,0.6);
+      border-radius: 12px; padding: 10px 18px;
+      display: flex; align-items: center; gap: 12px;
+      z-index: 9999; box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(240,124,16,0.2);
+      backdrop-filter: blur(12px);
+    }
+    .admin-bar-label { font-size: 12px; font-weight: 700; color: #F07C10; letter-spacing: .06em; text-transform: uppercase; }
+    .admin-save-btn, .admin-close-btn {
+      font-size: 12px; font-weight: 700; border-radius: 7px; padding: 6px 14px; cursor: pointer; border: none;
+    }
+    .admin-save-btn { background: linear-gradient(135deg,#F07C10,#E05000); color: #fff; }
+    .admin-save-btn:hover { filter: brightness(1.15); }
+    .admin-close-btn { background: rgba(255,255,255,0.08); color: #AAB8CC; }
+    .admin-close-btn:hover { background: rgba(255,255,255,0.14); }
+    [contenteditable="true"] {
+      outline: 2px dashed rgba(240,124,16,0.55); outline-offset: 2px;
+      border-radius: 4px; min-width: 20px; cursor: text;
+    }
+
+    /* ─── BANK SECTION ───────────────────────────── */
+    .bank-section { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 14px; }
+    .bank-toggle {
+      display: flex; align-items: center; gap: 7px;
+      background: none; border: none; cursor: pointer;
+      color: rgba(0,200,255,0.75); font-size: 12px; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; padding: 0;
+      transition: color .2s;
+    }
+    .bank-toggle svg { transition: transform .25s; flex-shrink: 0; }
+    .bank-toggle:hover { color: var(--cyan); }
+    .bank-section.open .bank-toggle svg { transform: rotate(180deg); }
+    .bank-section.open .bank-toggle { color: var(--cyan); }
+    .bank-accounts { display: none; flex-direction: column; gap: 10px; margin-top: 12px; }
+    .bank-section.open .bank-accounts { display: flex; }
+    .bank-row {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px; padding: 10px 12px;
+    }
+    .bank-logo-wrap { flex-shrink: 0; border-radius: 5px; overflow: hidden; line-height: 0; }
+    .bank-info { display: flex; align-items: center; gap: 8px; flex: 1; flex-wrap: wrap; }
+    .bank-name { font-size: 12px; font-weight: 700; color: #C8D8F0; flex: 1; min-width: 90px; }
+    .bank-currency { background: rgba(30,95,255,0.25); border: 1px solid rgba(30,95,255,0.45); border-radius: 4px; padding: 1px 5px; font-size: 10px; color: var(--blue-bright); margin-left: 3px; }
+    .bank-currency.usd { background: rgba(0,180,100,0.2); border-color: rgba(0,180,100,0.4); color: #4DE88A; }
+    .bank-acc { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; color: #E8F0FF; letter-spacing: .04em; }
+    .copy-btn {
+      background: rgba(30,95,255,0.15); border: 1px solid rgba(30,95,255,0.35);
+      border-radius: 5px; padding: 4px 6px; cursor: pointer; color: var(--blue-bright);
+      line-height: 0; transition: background .2s, color .2s;
+    }
+    .copy-btn:hover { background: rgba(30,95,255,0.35); color: #fff; }
+    .copy-btn.copied { background: rgba(0,180,100,0.25); border-color: rgba(0,180,100,0.5); color: #4DE88A; }
+
+    /* ─── PRECIOS ─────────────────────────────────── */
+    #precios { background: var(--bg-void); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .price-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 28px 24px;
+      position: relative; overflow: hidden;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .price-card.featured {
+      border-color: var(--blue-glow);
+      background: linear-gradient(160deg, #0E2154 0%, var(--bg-card) 60%);
+      box-shadow: 0 0 40px rgba(30,95,255,0.22);
+    }
+    .price-card.featured::after {
+      content: 'POPULAR'; position: absolute; top: 18px; right: -28px;
+      background: linear-gradient(135deg, var(--blue-glow), var(--cyan));
+      color: #fff; font-size: 9px; font-weight: 800;
+      letter-spacing: .1em; padding: 5px 40px; transform: rotate(45deg);
+    }
+    .price-card:hover { border-color: var(--border-bright); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+    .price-category {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 8px;
+    }
+    .price-service-name { font-size: 1.05rem; font-weight: 700; margin-bottom: 20px; }
+    .price-rows { display: flex; flex-direction: column; gap: 10px; }
+    .price-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.04); border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .price-row-label { font-size: 13px; color: var(--white-soft); font-weight: 500; }
+    .price-row-value {
+      font-size: 13px; font-weight: 700;
+      background: linear-gradient(90deg, var(--blue-bright), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── NOSOTROS ────────────────────────────────── */
+    #nosotros { background: var(--bg-deep); }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .pillar {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 34px 26px;
+      transition: border-color .25s, transform .25s;
+    }
+    .pillar:hover { border-color: var(--border-bright); transform: translateY(-3px); }
+    .pillar-icon { font-size: 2rem; margin-bottom: 16px; }
+    .pillar-title { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+    .pillar-desc { font-size: .875rem; color: var(--white-dim); line-height: 1.7; }
+
+    /* ─── ANIMATED ARROWS ─────────────────────────── */
+    .arrows-triple {
+      display: flex; flex-direction: row;
+      justify-content: center; align-items: flex-end;
+      gap: 20px; margin-bottom: 40px;
+    }
+    .section-arrows {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 2px;
+    }
+    .arr-chevron {
+      width: 36px; height: 22px; opacity: 0;
+      animation: arrowCascade 1.4s ease-in-out infinite;
+    }
+    .arr-chevron:nth-child(1) { animation-delay: 0s;    opacity: 0; }
+    .arr-chevron:nth-child(2) { animation-delay: 0.22s; opacity: 0; }
+    .arr-chevron:nth-child(3) { animation-delay: 0.44s; opacity: 0; }
+    @keyframes arrowCascade {
+      0%   { opacity: 0;    transform: translateY(-6px); }
+      30%  { opacity: 0.45; transform: translateY(0); }
+      60%  { opacity: 1;    transform: translateY(7px); }
+      100% { opacity: 0;    transform: translateY(14px); }
+    }
+
+    /* ─── CONTACTO ────────────────────────────────── */
+    #contacto { background: var(--bg-void); }
+
+    .contact-inner {
+      background: linear-gradient(135deg, var(--blue-pearl) 0%, var(--bg-card) 100%);
+      border: 1px solid var(--border-bright); border-radius: var(--radius-xl);
+      padding: clamp(36px,6vw,64px);
+      display: flex; flex-direction: column; align-items: center;
+      gap: 36px; text-align: center;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 60px rgba(30,95,255,0.12);
+    }
+
+    .contact-head { max-width: 560px; }
+
+    .contact-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2rem,4vw,3rem); font-weight: 700;
+      line-height: 1.15; margin-bottom: 14px;
+      text-shadow: 0 0 30px rgba(100,180,255,0.3);
+    }
+    .contact-title .accent {
+      background: linear-gradient(90deg, var(--blue-bright), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .contact-text { color: var(--white-soft); line-height: 1.65; font-size: .95rem; }
+
+    .contact-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 14px; width: 100%;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 16px 18px;
+      transition: border-color .2s, background .2s;
+      text-align: left;
+    }
+    .contact-item:hover { border-color: var(--border-bright); background: rgba(30,95,255,0.07); }
+    .contact-icon-wrap {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: #050810; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border);
+    }
+    .contact-icon-wrap svg { display: block; }
+    .contact-item-label {
+      font-size: 10.5px; font-weight: 700; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 3px;
+    }
+    .contact-item-value {
+      font-size: 13px; font-weight: 600; color: var(--white);
+      overflow-wrap: break-word; word-break: break-word; min-width: 0;
+    }
+    /* Schedule full-width item */
+    .contact-item--full {
+      grid-column: 1 / -1;
+      align-items: flex-start;
+    }
+    .sched-wrap { flex: 1; min-width: 0; }
+    .sched-row {
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: 2px; margin-bottom: 5px;
+    }
+    .sched-day { font-size: 12px; font-weight: 700; color: var(--white-soft); }
+    .sched-time { font-size: 12px; font-weight: 700; color: var(--cyan); white-space: nowrap; }
+    .sched-note { font-size: 11px; color: var(--white-dim); margin-bottom: 8px; }
+    .sched-sep { height: 1px; background: var(--border); margin: 8px 0; }
+    .sched-estudios-label {
+      font-size: 10.5px; font-weight: 700; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 2px;
+    }
+    .sched-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .sched-pill {
+      background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.2);
+      color: var(--white-soft); border-radius: 999px; padding: 3px 10px;
+      font-size: 11px; font-weight: 600;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────── */
+    footer {
+      background: var(--bg-void);
+      border-top: 1px solid var(--border);
+      padding: 36px clamp(1rem,5vw,3rem);
+      display: flex; flex-wrap: wrap; gap: 16px;
+      justify-content: space-between; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .footer-brand { font-size: 13px; color: var(--white-dim); }
+    .footer-brand strong {
+      font-family: 'Dancing Script', cursive;
+      font-size: 17px; color: var(--white);
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 12.5px; color: var(--white-dim);
+      text-decoration: none; transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--cyan); }
+
+    /* ─── SCROLL ANIMS ────────────────────────────── */
+    [data-aos] { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
+    [data-aos].visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .08s; } .d2 { transition-delay: .16s; }
+    .d3 { transition-delay: .24s; } .d4 { transition-delay: .32s; }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-logo-ring">LC</div>
+    <span class="nav-name">La Crema <span>Multiservicios</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contáctanos</a></li>
+  </ul>
+  <button id="pwa-install-btn" class="nav-cta pwa-btn" style="display:none;margin-right:8px;" onclick="pwaDoPinstall()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-2px;margin-right:4px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Instalar app
+  </button>
+  <button class="nav-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+    Visítanos
+  </button>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────────── -->
+<section class="hero">
+  <canvas id="stars-canvas"></canvas>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Centro de Internet &amp; Servicios Digitales y de Aprendizaje</div>
+    <h1 class="hero-main-title" id="hero-main-title">La Crema Multiservicios</h1>
+    <p class="hero-subtitle">Centro de Internet &amp; Servicios Digitales y de Aprendizaje</p>
+    <div class="hero-btns">
+      <a href="#servicios" class="btn-primary">Ver servicios</a>
+      <a href="#contacto" class="btn-outline">Encuéntranos</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS ─────────────────────────────────────── -->
+<div class="stats-strip">
+  <div class="stat-item" data-aos><div class="stat-num">10+</div><div class="stat-label">Servicios disponibles</div></div>
+  <div class="stat-item" data-aos><div class="stat-num">Alta</div><div class="stat-label">Velocidad de internet</div></div>
+  <div class="stat-item" data-aos><div class="stat-num">RD$</div><div class="stat-label">Precios accesibles</div></div>
+  <div class="stat-item" data-aos><div class="stat-num">100%</div><div class="stat-label">Atención personal</div></div>
+</div>
+<div class="divider"></div>
+
+<!-- ─── SERVICIOS ────────────────────────────────── -->
+<section id="servicios">
+  <div class="section-wrap">
+    <span class="section-eyebrow" data-aos>Lo que ofrecemos</span>
+    <h2 class="section-title" data-aos>Servicios para tu vida<br /><span class="accent">digital y cotidiana</span></h2>
+    <p class="section-desc" data-aos>Desde navegar por internet hasta imprimir tu documentación oficial — todo con atención rápida y precios justos en pesos dominicanos.</p>
+    <div class="services-grid">
+
+      <div class="service-card" data-aos>
+        <div class="service-icon-wrap">💻</div>
+        <div class="service-title">Trabajos a computadora</div>
+        <div class="service-desc">Trabajos escolares para educación básica, media y universitaria. Copias, impresiones, empaste de tesis, anteproyectos y monográficos. <strong style="color:var(--cyan)">Desde RD$100 hr. P/Persona.</strong></div>
+        <div class="service-prices">
+          <div class="service-price-row"><span class="spr-label">Trabajos a computadora</span><span class="spr-value">RD$25 / 2 hojas</span></div>
+          <div class="service-price-row"><span class="spr-label">Hora de internet</span><span class="spr-value">RD$50 / hora</span></div>
+          <div class="service-price-row"><span class="spr-label">Cabina privada</span><span class="spr-value">Desde RD$100 / hr. P/Persona</span></div>
+        </div>
+      </div>
+
+      <div class="service-card" data-aos d1">
+        <div class="service-icon-wrap">🎮</div>
+        <div class="service-title">Videojuegos</div>
+        <div class="service-desc">Área de videojuegos con cabinas disponibles para jugar solo o acompañado. Consolas y juegos actualizados para toda la familia.</div>
+        <div class="service-prices">
+          <div class="service-price-row"><span class="spr-label">Hora de juego</span><span class="spr-value">RD$100 / hora</span></div>
+          <div class="service-price-row"><span class="spr-label">Persona adicional</span><span class="spr-value">+RD$25 P/Persona</span></div>
+        </div>
+      </div>
+
+      <div class="service-card service-card--papeleria" data-aos>
+        <div class="service-icon-wrap">📋</div>
+        <div class="service-title">Papelería &amp; artículos</div>
+        <div class="service-desc">Artículos de papelería, foamy, útiles y más. Elige una vista:</div>
+        <div class="pap-card-tabs">
+          <button class="pap-card-tab" onclick="openPapeleria('catalog')">🖼️ Ver catálogo</button>
+          <button class="pap-card-tab" onclick="openPapeleria('prices')">💰 Precios</button>
+          <button class="pap-card-tab pap-card-tab--hl" onclick="openPapeleria('plastificado')">🔲 Plastificado</button>
+        </div>
+      </div>
+
+      <div class="service-card" data-aos>
+        <div class="service-icon-wrap">🖨️</div>
+        <div class="service-title">Impresiones</div>
+        <div class="service-desc">Impresiones en blanco y negro o a todo color en diferentes tamaños: carta, oficio, A4. Calidad profesional en cada página.</div>
+        <span class="service-tag">Color y B&amp;N</span>
+        <span class="service-tag">Carta / Oficio</span>
+        <span class="service-tag">Alta calidad</span>
+      </div>
+
+      <div class="service-card" data-aos class="d1">
+        <div class="service-icon-wrap">📄</div>
+        <div class="service-title">Fotocopias</div>
+        <div class="service-desc">Servicio rápido de fotocopiado. Ideal para documentos, expedientes, tareas escolares y trámites oficiales.</div>
+        <span class="service-tag">Rápido</span><span class="service-tag">Económico</span><span class="service-tag">Alta calidad</span>
+      </div>
+
+      <div class="service-card" data-aos class="d2">
+        <div class="service-icon-wrap">🔍</div>
+        <div class="service-title">Escáner de documentos</div>
+        <div class="service-desc">Digitaliza tus documentos en alta resolución. Recibe tu archivo en PDF o imagen listo para enviar por correo o WhatsApp.</div>
+        <span class="service-tag">Alta resolución</span><span class="service-tag">PDF / JPG</span><span class="service-tag">Envío digital</span>
+      </div>
+
+      <div class="service-card" data-aos>
+        <div class="service-icon-wrap">🌐</div>
+        <div class="service-title">Trámites en línea</div>
+        <div class="service-desc">Asistencia para pagos de servicios, llenado de formularios oficiales, solicitudes gubernamentales y gestiones digitales.</div>
+        <span class="service-tag">Pagos en línea</span><span class="service-tag">Formularios</span><span class="service-tag">Asistencia</span>
+
+        <!-- ── Sección de pagos bancarios ── -->
+        <div class="bank-section">
+          <button class="bank-toggle" onclick="this.parentElement.classList.toggle('open')" aria-expanded="false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            Transferencias bancarias
+          </button>
+          <div class="bank-accounts">
+            <!-- BHD León -->
+            <div class="bank-row">
+              <div class="bank-logo-wrap bhd-logo">
+                <img src="bhd-logo.png" width="40" height="40" style="border-radius:50%;object-fit:cover;display:block;" alt="BHD León">
+              </div>
+              <div class="bank-info">
+                <span class="bank-name">BHD León</span>
+                <span class="bank-acc">33638870010</span>
+                <button class="copy-btn" onclick="copyAcc(this,'33638870010')" title="Copiar número">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                </button>
+              </div>
+            </div>
+            <!-- Banreservas RD$ -->
+            <div class="bank-row">
+              <div class="bank-logo-wrap bnr-logo">
+                <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" width="72" height="24">
+                  <rect width="120" height="40" rx="4" fill="#1A3A6B"/>
+                  <rect width="120" height="40" rx="4" fill="none" stroke="#D4AF37" stroke-width="2"/>
+                  <text x="60" y="26" font-family="Arial,sans-serif" font-weight="800" font-size="13" fill="#fff" text-anchor="middle" letter-spacing="0.5">Banreservas</text>
+                </svg>
+              </div>
+              <div class="bank-info">
+                <span class="bank-name">Banreservas <span class="bank-currency">RD$</span></span>
+                <span class="bank-acc">2740016146</span>
+                <button class="copy-btn" onclick="copyAcc(this,'2740016146')" title="Copiar número">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                </button>
+              </div>
+            </div>
+            <!-- Banreservas USD -->
+            <div class="bank-row">
+              <div class="bank-logo-wrap bnr-logo">
+                <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" width="72" height="24">
+                  <rect width="120" height="40" rx="4" fill="#1A3A6B"/>
+                  <rect width="120" height="40" rx="4" fill="none" stroke="#D4AF37" stroke-width="2"/>
+                  <text x="60" y="26" font-family="Arial,sans-serif" font-weight="800" font-size="13" fill="#fff" text-anchor="middle" letter-spacing="0.5">Banreservas</text>
+                </svg>
+              </div>
+              <div class="bank-info">
+                <span class="bank-name">Banreservas <span class="bank-currency usd">USD</span></span>
+                <span class="bank-acc">9609143654</span>
+                <button class="copy-btn" onclick="copyAcc(this,'9609143654')" title="Copiar número">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card" data-aos class="d1">
+        <div class="service-icon-wrap">🎨</div>
+        <div class="service-title">Diseño básico</div>
+        <div class="service-desc">Diseño de invitaciones, volantes, tarjetas personales y materiales para redes sociales o impresión.</div>
+        <span class="service-tag">Invitaciones</span><span class="service-tag">Tarjetas</span><span class="service-tag">Volantes</span>
+      </div>
+
+      <div class="service-card" data-aos class="d2">
+        <div class="service-icon-wrap">☕</div>
+        <div class="service-title">Café &amp; Snacks</div>
+        <div class="service-desc">Disfruta tu sesión con bebidas calientes y frescas, snacks y refrigerios mientras trabajas o juegas.</div>
+        <span class="service-tag">Café</span><span class="service-tag">Bebidas frías</span><span class="service-tag">Snacks</span>
+      </div>
+
+    </div>
+    <p style="margin-top:22px;font-size:12px;color:var(--white-dim);text-align:center;">
+      * Precios sujetos a actualización. Consulta las tarifas vigentes directamente en sucursal.
+    </p>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ─── BOTNAUTA ──────────────────────────────────── -->
+<section id="botnauta-section" style="background:var(--bg-void);position:relative;z-index:1;">
+  <div id="bot-stage-wrap" style="position:relative;width:100%;height:430px;overflow:visible;">
+
+    <!-- ── Botnauta: Cavalier King Charles · traje astronauta naranja · banderas RD ── -->
+    <!-- ── Botnauta 3D (Three.js — canvas creado por JS) ── -->
+    <div id="bot-wrap" style="position:absolute;width:240px;height:300px;display:none;z-index:20;left:-380px;top:20px;transform-origin:center bottom;filter:drop-shadow(4px 8px 14px rgba(0,0,0,0.72)) drop-shadow(0 0 20px rgba(240,124,16,0.38));"></div>
+
+    <!-- ── Speech bubble ── -->
+    <div id="bot-bubble" style="
+      position:absolute; display:none; z-index:21;
+      background:#0B1630; border:1px solid rgba(30,95,255,0.55);
+      border-radius:16px; padding:16px 18px; width:270px;
+      box-shadow:0 8px 40px rgba(0,0,0,0.5),0 0 20px rgba(30,95,255,0.15);
+      pointer-events:none;
+    ">
+      <!-- ── Fase 1: Saludo ── -->
+      <div id="bot-greet-section">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+          background:linear-gradient(90deg,#FF9A3C,#FFD080);-webkit-background-clip:text;
+          -webkit-text-fill-color:transparent;background-clip:text;margin-bottom:9px;">
+          👋 ¡Hola!
+        </div>
+        <p style="font-size:14px;color:#D8E4FF;line-height:1.55;font-weight:600;margin:0;">
+          Bienvenidos a <span style="background:linear-gradient(90deg,#4D8FFF,#00C8FF);
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+            background-clip:text;">«La Crema Multiservicios»</span>
+        </p>
+      </div>
+      <!-- ── Fase 2: ¿Sabías que? ── -->
+      <div id="bot-fact-section" style="display:none;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+          background:linear-gradient(90deg,#4D8FFF,#00C8FF);-webkit-background-clip:text;
+          -webkit-text-fill-color:transparent;background-clip:text;margin-bottom:9px;">
+          ✦ ¿Sabías que...
+        </div>
+        <p id="bot-phrase" style="font-size:13px;color:#D8E4FF;line-height:1.6;font-style:italic;margin:0 0 12px;"></p>
+        <button id="bot-edit-btn" style="
+          pointer-events:all; cursor:pointer;
+          background:rgba(30,95,255,0.15); border:1px solid rgba(30,95,255,0.4);
+          color:#7E9AC4; border-radius:8px; padding:5px 12px;
+          font-size:11px; font-weight:600; font-family:inherit;
+          transition:background .2s,color .2s;
+        " onmouseover="this.style.background='rgba(30,95,255,0.3)';this.style.color='#fff'"
+           onmouseout="this.style.background='rgba(30,95,255,0.15)';this.style.color='#7E9AC4'">
+          ✏️ Editar frase
+        </button>
+      </div>
+      <!-- Cola del bocadillo -->
+      <div style="
+        position:absolute; bottom:-9px; left:50%; transform:translateX(-50%);
+        width:0; height:0;
+        border-left:9px solid transparent; border-right:9px solid transparent;
+        border-top:9px solid rgba(30,95,255,0.55);
+      "></div>
+      <div style="
+        position:absolute; bottom:-7px; left:50%; transform:translateX(-50%);
+        width:0; height:0;
+        border-left:7px solid transparent; border-right:7px solid transparent;
+        border-top:7px solid #0B1630;
+      "></div>
+    </div>
+
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ─── NOSOTROS ──────────────────────────────────── -->
+<section id="nosotros">
+  <div class="section-wrap">
+    <span class="section-eyebrow" data-aos>¿Por qué elegirnos?</span>
+    <h2 class="section-title" data-aos>Tu lugar de confianza,<br /><span class="accent">siempre disponible</span></h2>
+    <p class="section-desc" data-aos>No somos solo un cyber café — somos el lugar al que vuelves porque aquí siempre te resuelven.</p>
+    <div class="pillars-grid">
+      <div class="pillar" data-aos><div class="pillar-icon">⚡</div><div class="pillar-title">Rapidez real</div><div class="pillar-desc">Impresiones listas en segundos, trabajos entregados al momento. Valoramos tu tiempo.</div></div>
+      <div class="pillar" data-aos class="d1"><div class="pillar-icon">💡</div><div class="pillar-title">Asesoría incluida</div><div class="pillar-desc">¿No sabes qué formato necesitas? Te guiamos sin costo adicional.</div></div>
+      <div class="pillar" data-aos class="d2"><div class="pillar-icon">🤝</div><div class="pillar-title">Trato cercano</div><div class="pillar-desc">Conocemos a nuestros clientes. Aquí no eres un número — eres parte de la comunidad.</div></div>
+      <div class="pillar" data-aos><div class="pillar-icon">🏆</div><div class="pillar-title">Calidad consistente</div><div class="pillar-desc">Equipos actualizados y materiales de primera. Cada trabajo con el mismo estándar.</div></div>
+      <div class="pillar" data-aos class="d1"><div class="pillar-icon">💰</div><div class="pillar-title">Precios honestos</div><div class="pillar-desc">Tarifas claras en RD$, sin cobros sorpresa. El mejor precio de la zona.</div></div>
+      <div class="pillar" data-aos class="d2"><div class="pillar-icon">🎮</div><div class="pillar-title">Entretenimiento</div><div class="pillar-desc">Área de videojuegos para relajarte y divertirte después de tus labores.</div></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ─── CONTACTO ──────────────────────────────────── -->
+<section id="contacto">
+  <div class="section-wrap">
+
+    <!-- Triple animated arrow groups -->
+    <div class="arrows-triple" data-aos>
+
+      <!-- Group LEFT -->
+      <div class="section-arrows">
+        <svg class="arr-chevron" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L18 17L33 3" stroke="url(#aL1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="aL1" x1="3" y1="3" x2="33" y2="3" gradientUnits="userSpaceOnUse"><stop stop-color="#4D8FFF"/><stop offset="1" stop-color="#00C8FF"/></linearGradient></defs></svg>
+        <svg class="arr-chevron" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L18 17L33 3" stroke="url(#aL2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="aL2" x1="3" y1="3" x2="33" y2="3" gradientUnits="userSpaceOnUse"><stop stop-color="#4D8FFF"/><stop offset="1" stop-color="#00C8FF"/></linearGradient></defs></svg>
+        <svg class="arr-chevron" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L18 17L33 3" stroke="url(#aL3)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="aL3" x1="3" y1="3" x2="33" y2="3" gradientUnits="userSpaceOnUse"><stop stop-color="#4D8FFF"/><stop offset="1" stop-color="#00C8FF"/></linearGradient></defs></svg>
+      </div>
+
+      <!-- Group CENTER (existing) -->
+      <div class="section-arrows">
+        <svg class="arr-chevron" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L18 17L33 3" stroke="url(#aC1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="aC1" x1="3" y1="3" x2="33" y2="3" gradientUnits="userSpaceOnUse"><stop stop-color="#4D8FFF"/><stop offset="1" stop-color="#00C8FF"/></linearGradient></defs></svg>
+        <svg class="arr-chevron" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L18 17L33 3" stroke="url(#aC2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="aC2" x1="3" y1="3" x2="33" y2="3" gradientUnits="userSpaceOnUse"><stop stop-color="#4D8FFF"/><stop offset="1" stop-color="#00C8FF"/></linearGradient></defs></svg>
+        <svg class="arr-chevron" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L18 17L33 3" stroke="url(#aC3)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="aC3" x1="3" y1="3" x2="33" y2="3" gradientUnits="userSpaceOnUse"><stop stop-color="#4D8FFF"/><stop offset="1" stop-color="#00C8FF"/></linearGradient></defs></svg>
+      </div>
+
+      <!-- Group RIGHT -->
+      <div class="section-arrows">
+        <svg class="arr-chevron" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L18 17L33 3" stroke="url(#aR1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="aR1" x1="3" y1="3" x2="33" y2="3" gradientUnits="userSpaceOnUse"><stop stop-color="#4D8FFF"/><stop offset="1" stop-color="#00C8FF"/></linearGradient></defs></svg>
+        <svg class="arr-chevron" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L18 17L33 3" stroke="url(#aR2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="aR2" x1="3" y1="3" x2="33" y2="3" gradientUnits="userSpaceOnUse"><stop stop-color="#4D8FFF"/><stop offset="1" stop-color="#00C8FF"/></linearGradient></defs></svg>
+        <svg class="arr-chevron" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3L18 17L33 3" stroke="url(#aR3)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="aR3" x1="3" y1="3" x2="33" y2="3" gradientUnits="userSpaceOnUse"><stop stop-color="#4D8FFF"/><stop offset="1" stop-color="#00C8FF"/></linearGradient></defs></svg>
+      </div>
+
+    </div>
+
+    <div class="contact-inner" data-aos>
+      <div class="contact-head">
+        <h2 class="contact-title">
+          Visítanos en<br />
+          <span class="accent">La Crema Multiservicios</span>
+        </h2>
+        <p class="contact-text">Estamos aquí para atenderte. Visítanos, llámanos o escríbenos — con gusto resolvemos lo que necesites.</p>
+      </div>
+
+      <div class="contact-items">
+
+        <!-- Ubicación -->
+        <a class="contact-item contact-link" href="https://maps.google.com/?q=Calle+1ra,+El+Manguito,+Sabana+Perdida,+Santo+Domingo+Norte,+Republica+Dominicana" target="_blank" rel="noopener">
+          <div class="contact-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#4D8FFF"/>
+              <circle cx="12" cy="9" r="2.5" fill="#050810"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Ubicación <span class="link-badge">Maps</span></div>
+            <div class="contact-item-value" data-editable="ubicacion">Calle 1ra, El Manguito, Sabana Perdida (Próximo a la Escuela Suiza). Santo Domingo Norte.</div>
+          </div>
+        </a>
+
+        <!-- WhatsApp -->
+        <a class="contact-item contact-link" href="https://wa.me/18093564915?text=Bienvenido%20a%20%22La%20Crema%20Multiservicios%22.%0AEscribe%20el%20servicio%20deseado." target="_blank" rel="noopener">
+          <div class="contact-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#25D366"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-item-label">WhatsApp <span class="link-badge">Chat</span></div>
+            <div class="contact-item-value" data-editable="whatsapp-num">Escríbenos directo →</div>
+          </div>
+        </a>
+
+        <!-- Instagram -->
+        <a class="contact-item contact-link" href="https://www.instagram.com/lacremamultiservicios/reels/" target="_blank" rel="noopener" onclick="window.open('https://www.instagram.com/lacremamultiservicios/reels/','_blank','noopener');return false;">
+          <div class="contact-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#FFDC80"/>
+                  <stop offset="25%" stop-color="#FCAF45"/>
+                  <stop offset="50%" stop-color="#E1306C"/>
+                  <stop offset="75%" stop-color="#833AB4"/>
+                  <stop offset="100%" stop-color="#405DE6"/>
+                </linearGradient>
+              </defs>
+              <rect width="24" height="24" rx="6" fill="url(#ig-grad)"/>
+              <rect x="2.4" y="2.4" width="19.2" height="19.2" rx="4.8" fill="none" stroke="#fff" stroke-width="1.6"/>
+              <circle cx="12" cy="12" r="4.2" fill="none" stroke="#fff" stroke-width="1.6"/>
+              <circle cx="17.5" cy="6.5" r="1.2" fill="#fff"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Instagram <span class="link-badge ig">Síguenos</span></div>
+            <div class="contact-item-value">@lacremamultiservicios</div>
+          </div>
+        </a>
+
+        <!-- TikTok -->
+        <a class="contact-item contact-link" href="https://www.tiktok.com/@lacremamultiservicios" target="_blank" rel="noopener" onclick="window.open('https://www.tiktok.com/@lacremamultiservicios','_blank','noopener');return false;">
+          <div class="contact-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="6" fill="#010101"/>
+              <path d="M17 4.5c-.4 1.9-1.8 3.2-3.8 3.4V12c0 2.1-1.7 3.8-3.8 3.8S5.6 14.1 5.6 12s1.7-3.8 3.8-3.8c.3 0 .6 0 .9.1V6c-.3 0-.6-.1-.9-.1C6 5.9 3.2 8.7 3.2 12s2.8 6.1 6.2 6.1 6.2-2.8 6.2-6.1V9.1c1.1.7 2.3 1.1 3.7 1.1V7.8c-1.1 0-2.1-.5-2.3-3.3z" fill="#fff"/>
+              <path d="M17.5 7.5c.4.3.8.5 1.3.6V6.8c-.5-.1-1-.4-1.3-.8V7.5z" fill="#00F2EA"/>
+              <path d="M9.4 8.3c-2 0-3.6 1.6-3.6 3.7s1.6 3.7 3.6 3.7 3.6-1.6 3.6-3.7V4.5h-1.3c.2 1.5-.8 3.8-2.3 3.8z" fill="#FF004F"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-item-label">TikTok <span class="link-badge tt">Síguenos</span></div>
+            <div class="contact-item-value">@lacremamultiservicios</div>
+          </div>
+        </a>
+
+        <!-- YouTube -->
+        <a class="contact-item contact-link" href="https://www.youtube.com/@lacremamultiservicios?sub_confirmation=1" target="_blank" rel="noopener" onclick="window.open('https://www.youtube.com/@lacremamultiservicios?sub_confirmation=1','_blank','noopener');return false;">
+          <div class="contact-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23 6.5a3 3 0 00-2.1-2.1C19 4 12 4 12 4s-7 0-8.9.4A3 3 0 001 6.5C.6 8.4.6 12 .6 12s0 3.6.4 5.5a3 3 0 002.1 2.1C5 20 12 20 12 20s7 0 8.9-.4a3 3 0 002.1-2.1c.4-1.9.4-5.5.4-5.5s0-3.6-.4-5.5z" fill="#FF0000"/>
+              <polygon points="9.6,15.6 15.8,12 9.6,8.4" fill="#fff"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-item-label">YouTube <span class="link-badge yt">Suscríbete</span></div>
+            <div class="contact-item-value">@lacremamultiservicios</div>
+          </div>
+        </a>
+
+        <!-- Horario — full-width -->
+        <div class="contact-item contact-item--full">
+          <div class="contact-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" fill="#0B1D4A" stroke="#4D8FFF" stroke-width="1.8"/>
+              <path d="M12 7v5l3.5 2" stroke="#00C8FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="1" fill="#4D8FFF"/>
+              <path d="M12 3.5V5M12 19v1.5M3.5 12H5M19 12h1.5" stroke="#4D8FFF" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="sched-wrap">
+            <div class="contact-item-label">Horario</div>
+            <div class="sched-row">
+              <span class="sched-day">Lunes – Viernes</span>
+              <span class="sched-time">8:00 AM</span>
+              <span class="sched-time">9:00 PM</span>
+            </div>
+            <div class="sched-note">Centro de Internet &amp; Servicios Digitales y de Aprendizaje</div>
+            <div class="sched-sep"></div>
+            <div class="sched-estudios-label">Centro de Estudios</div>
+            <div class="sched-row"><span class="sched-day">Sábados / Domingos</span></div>
+            <div class="sched-pills">
+              <span class="sched-pill">8–10 AM</span>
+              <span class="sched-pill">10 AM–12 M</span>
+              <span class="sched-pill">3–5 PM</span>
+              <span class="sched-pill">5–7 PM</span>
+              <span class="sched-pill">7–9 PM</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────── -->
+<footer>
+  <div class="footer-brand">© 2026 <strong>La Crema Multiservicios</strong> — Todos los derechos reservados.</div>
+
+  <!-- Social bar -->
+  <div class="footer-social">
+    <a href="https://www.instagram.com/lacremamultiservicios/reels/" target="_blank" rel="noopener" class="fsoc-btn" title="Instagram" aria-label="Instagram" onclick="window.open('https://www.instagram.com/lacremamultiservicios/reels/','_blank','noopener');return false;">
+      <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="ig2" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFDC80"/><stop offset="25%" stop-color="#FCAF45"/><stop offset="50%" stop-color="#E1306C"/><stop offset="75%" stop-color="#833AB4"/><stop offset="100%" stop-color="#405DE6"/></linearGradient></defs>
+        <rect width="24" height="24" rx="6" fill="url(#ig2)"/>
+        <rect x="2.4" y="2.4" width="19.2" height="19.2" rx="4.8" fill="none" stroke="#fff" stroke-width="1.6"/>
+        <circle cx="12" cy="12" r="4.2" fill="none" stroke="#fff" stroke-width="1.6"/>
+        <circle cx="17.5" cy="6.5" r="1.2" fill="#fff"/>
+      </svg>
+    </a>
+    <a href="https://www.tiktok.com/@lacremamultiservicios" target="_blank" rel="noopener" class="fsoc-btn" title="TikTok" aria-label="TikTok" onclick="window.open('https://www.tiktok.com/@lacremamultiservicios','_blank','noopener');return false;">
+      <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="6" fill="#010101"/>
+        <path d="M17 4.5c-.4 1.9-1.8 3.2-3.8 3.4V12c0 2.1-1.7 3.8-3.8 3.8S5.6 14.1 5.6 12s1.7-3.8 3.8-3.8c.3 0 .6 0 .9.1V6c-.3 0-.6-.1-.9-.1C6 5.9 3.2 8.7 3.2 12s2.8 6.1 6.2 6.1 6.2-2.8 6.2-6.1V9.1c1.1.7 2.3 1.1 3.7 1.1V7.8c-1.1 0-2.1-.5-2.3-3.3z" fill="#fff"/>
+      </svg>
+    </a>
+    <a href="https://www.youtube.com/@lacremamultiservicios?sub_confirmation=1" target="_blank" rel="noopener" class="fsoc-btn" title="YouTube — Suscríbete" aria-label="YouTube" onclick="window.open('https://www.youtube.com/@lacremamultiservicios?sub_confirmation=1','_blank','noopener');return false;">
+      <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23 6.5a3 3 0 00-2.1-2.1C19 4 12 4 12 4s-7 0-8.9.4A3 3 0 001 6.5C.6 8.4.6 12 .6 12s0 3.6.4 5.5a3 3 0 002.1 2.1C5 20 12 20 12 20s7 0 8.9-.4a3 3 0 002.1-2.1c.4-1.9.4-5.5.4-5.5s0-3.6-.4-5.5z" fill="#FF0000"/>
+        <polygon points="9.6,15.6 15.8,12 9.6,8.4" fill="#fff"/>
+      </svg>
+    </a>
+    <a href="https://wa.me/18093564915?text=Bienvenido%20a%20%22La%20Crema%20Multiservicios%22.%0AEscribe%20el%20servicio%20deseado." target="_blank" rel="noopener" class="fsoc-btn" title="WhatsApp" aria-label="WhatsApp" onclick="window.open('https://wa.me/18093564915?text=Bienvenido%20a%20%22La%20Crema%20Multiservicios%22.%0AEscribe%20el%20servicio%20deseado.','_blank','noopener');return false;">
+      <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="6" fill="#25D366"/>
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884" fill="#fff"/>
+      </svg>
+    </a>
+  </div>
+
+  <nav class="footer-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</footer>
+
+<!-- ─── ADMIN EDIT TOOLBAR (Ctrl+Alt+E) ──────────── -->
+<div id="admin-bar" style="display:none;">
+  <span class="admin-bar-label">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-2px"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    Modo edición
+  </span>
+  <button class="admin-save-btn" onclick="adminSave()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-2px"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+    Guardar
+  </button>
+  <button class="admin-close-btn" onclick="adminToggle()">✕ Salir</button>
+</div>
+
+<!-- ─── PAPELERÍA SUBPAGE ─────────────────────────── -->
+<div id="papeleria-page" class="pap-overlay" role="dialog" aria-modal="true" aria-label="Catálogo Papelería" style="display:none;">
+  <div class="pap-header">
+    <button class="pap-back" onclick="closePapeleria()" aria-label="Volver">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Volver
+    </button>
+    <div class="pap-header-center">
+      <span class="pap-header-title" id="pap-page-title">📋 Catálogo</span>
+      <span class="pap-header-sub">La Crema Multiservicios</span>
+    </div>
+    <input id="pap-search" class="pap-search" type="search" placeholder="🔍 Buscar…" oninput="filterProducts(this.value)">
+  </div>
+
+  <!-- View tabs -->
+  <div class="pap-view-tabs">
+    <button class="pap-view-btn active" id="vbtn-catalog"       onclick="setPapView('catalog')">🖼️ Catálogo</button>
+    <button class="pap-view-btn"        id="vbtn-prices"        onclick="setPapView('prices')">💰 Precios</button>
+    <button class="pap-view-btn"        id="vbtn-plastificado"  onclick="setPapView('plastificado')">🔲 Plastificado</button>
+  </div>
+
+  <!-- Category filter (hidden in plastificado view) -->
+  <div class="pap-filter-bar" id="pap-cats"></div>
+
+  <div class="pap-body">
+    <div class="pap-grid" id="pap-grid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════ -->
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+<script>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   1. STARFIELD — TWINKLE → VORTEX → RAIN → RETURN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  const canvas = document.getElementById('stars-canvas');
+  const ctx    = canvas.getContext('2d');
+  const STAR_COUNT = 180;
+
+  const Phase = { TWINKLE:0, VORTEX:1, VANISH:2, RAIN:3, RETURN:4 };
+  let phase       = Phase.TWINKLE;
+  let phaseStart  = 0;        // ms since start
+  let elapsed     = 0;
+  const DUR = {
+    TWINKLE: 30000,
+    VORTEX:   3200,
+    VANISH:    800,
+    RAIN:     4500,
+    RETURN:   2200
+  };
+
+  let stars = [];
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = canvas.closest ? canvas.closest('.hero')?.offsetHeight || window.innerHeight : window.innerHeight;
+    canvas.height = document.querySelector('.hero').offsetHeight;
+  }
+
+  function mkStar() {
+    return {
+      ox: Math.random() * canvas.width,
+      oy: Math.random() * canvas.height,
+      x:  0, y: 0,
+      r:  Math.random() * 1.3 + 0.3,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.003 + 0.0008,
+      // vortex
+      angle: 0, dist: 0,
+      spin: (Math.random() < 0.5 ? 1 : -1) * (Math.random() * 0.04 + 0.025),
+      // rain
+      rx: 0, ry: 0, rspeed: Math.random() * 2.5 + 1.5,
+      // return
+      retX: 0, retY: 0
+    };
+  }
+
+  function init() {
+    stars = Array.from({length: STAR_COUNT}, () => {
+      const s = mkStar();
+      s.x = s.ox; s.y = s.oy;
+      return s;
+    });
+  }
+
+  function twinkeAlpha(s, t) {
+    return 0.2 + 0.8 * (0.5 + 0.5 * Math.sin(s.phase + t * s.speed * 120));
+  }
+
+  function drawStar(s, alpha) {
+    if (alpha <= 0) return;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(180,215,255,${Math.min(1, alpha)})`;
+    ctx.fill();
+  }
+
+  function draw(ts) {
+    if (!phaseStart) phaseStart = ts;
+    elapsed = ts - phaseStart;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const cx = canvas.width  / 2;
+    const cy = canvas.height / 2;
+
+    /* ── TWINKLE ── */
+    if (phase === Phase.TWINKLE) {
+      stars.forEach(s => drawStar(s, twinkeAlpha(s, elapsed)));
+      if (elapsed >= DUR.TWINKLE) {
+        phase = Phase.VORTEX; phaseStart = ts;
+        stars.forEach(s => {
+          s.angle = Math.atan2(s.oy - cy, s.ox - cx);
+          s.dist  = Math.hypot(s.ox - cx, s.oy - cy);
+          s.x = s.ox; s.y = s.oy;
+        });
+      }
+    }
+
+    /* ── VORTEX ── */
+    else if (phase === Phase.VORTEX) {
+      const p = Math.min(elapsed / DUR.VORTEX, 1);
+      const ease = p < 0.5 ? 2*p*p : -1+(4-2*p)*p; // ease-in-out
+      stars.forEach(s => {
+        s.angle += s.spin * (1 + p * 3);         // accelerates
+        s.dist  *= (1 - 0.012 * (1 + p * 2));    // shrinks toward center
+        if (s.dist < 1) s.dist = 1;
+        s.x = cx + Math.cos(s.angle) * s.dist;
+        s.y = cy + Math.sin(s.angle) * s.dist;
+        drawStar(s, twinkeAlpha(s, elapsed) * (1 - ease * 0.6));
+      });
+      if (p >= 1) { phase = Phase.VANISH; phaseStart = ts; }
+    }
+
+    /* ── VANISH ── */
+    else if (phase === Phase.VANISH) {
+      const p  = Math.min(elapsed / DUR.VANISH, 1);
+      stars.forEach(s => drawStar(s, (1 - p)));
+      if (p >= 1) {
+        phase = Phase.RAIN; phaseStart = ts;
+        stars.forEach(s => {
+          s.rx = Math.random() * canvas.width;
+          s.ry = -Math.random() * canvas.height * 0.6 - 10;
+          s.rspeed = Math.random() * 2.8 + 1.2;
+          s.x = s.rx; s.y = s.ry;
+        });
+      }
+    }
+
+    /* ── RAIN ── */
+    else if (phase === Phase.RAIN) {
+      const p = Math.min(elapsed / DUR.RAIN, 1);
+      const fadeIn = Math.min(1, p * 4);
+      stars.forEach(s => {
+        s.y += s.rspeed;
+        if (s.y > canvas.height + 15) {
+          s.y = -12;
+          s.x = Math.random() * canvas.width;
+        }
+        // tiny trail
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        ctx.lineTo(s.x, s.y - s.rspeed * 4);
+        ctx.strokeStyle = `rgba(180,215,255,${fadeIn * 0.18})`;
+        ctx.lineWidth = s.r * 0.7;
+        ctx.stroke();
+        drawStar(s, fadeIn * (0.5 + Math.random() * 0.5));
+      });
+      if (p >= 1) {
+        phase = Phase.RETURN; phaseStart = ts;
+        stars.forEach(s => { s.retX = s.x; s.retY = s.y; });
+      }
+    }
+
+    /* ── RETURN ── */
+    else if (phase === Phase.RETURN) {
+      const p    = Math.min(elapsed / DUR.RETURN, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      stars.forEach(s => {
+        s.x = s.retX + (s.ox - s.retX) * ease;
+        s.y = s.retY + (s.oy - s.retY) * ease;
+        drawStar(s, p * twinkeAlpha(s, elapsed));
+      });
+      if (p >= 1) {
+        phase = Phase.TWINKLE; phaseStart = ts;
+        stars.forEach(s => { s.x = s.ox; s.y = s.oy; });
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  init();
+  requestAnimationFrame(draw);
+  window.addEventListener('resize', () => { resize(); init(); });
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   2. TITLE LETTER ANIMATION — erase → depth appear
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function() {
+  const titleEl = document.getElementById('hero-main-title');
+  const rawText = titleEl.textContent;
+  titleEl.innerHTML = '';
+
+  const spans = [];
+
+  Array.from(rawText).forEach(ch => {
+    const span = document.createElement('span');
+    span.className = 'title-letter';
+    span.textContent = ch === ' ' ? '\u00A0' : ch;
+    titleEl.appendChild(span);
+    spans.push(span);
+  });
+
+  function runCycle() {
+    // ── PHASE 1: Erase right → left ──
+    const reverseSpans = [...spans].reverse();
+    reverseSpans.forEach((s, i) => {
+      setTimeout(() => {
+        s.style.transition = 'opacity 0.18s ease, transform 0.18s ease, filter 0.18s ease';
+        s.style.opacity    = '0';
+        s.style.transform  = 'scale(0.35) translateY(8px)';
+        s.style.filter     = 'blur(5px)';
+      }, i * 65);
+    });
+
+    const eraseTotal = spans.length * 65 + 400;
+
+    // ── PHASE 2: Appear from depth left → right ──
+    setTimeout(() => {
+      // Pre-set "at depth" state without transition
+      spans.forEach(s => {
+        s.style.transition = 'none';
+        s.style.opacity    = '0';
+        s.style.transform  = 'scale(0.08) perspective(600px) translateZ(-280px)';
+        s.style.filter     = 'blur(14px)';
+      });
+
+      // Small pause then fly in
+      setTimeout(() => {
+        spans.forEach((s, i) => {
+          setTimeout(() => {
+            s.style.transition =
+              'opacity 0.55s cubic-bezier(.17,.67,.35,1.15),' +
+              'transform 0.55s cubic-bezier(.17,.67,.35,1.15),' +
+              'filter 0.45s ease';
+            s.style.opacity   = '1';
+            s.style.transform = 'scale(1) perspective(600px) translateZ(0)';
+            s.style.filter    = 'blur(0)';
+          }, i * 52);
+        });
+      }, 60);
+
+      // Schedule next cycle — 5s ± random 1.5s
+      const appearTotal = spans.length * 52 + 700;
+      const nextDelay   = 5000 + Math.random() * 1500;
+      setTimeout(runCycle, appearTotal + nextDelay);
+
+    }, eraseTotal);
+  }
+
+  // Kick off after 3 seconds on load
+  setTimeout(runCycle, 3000);
+})();
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   3. BOTNAUTA 3D — Three.js · Cavalier King Charles
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+(function Botnauta3D() {
+  if (!window.THREE) { console.warn('Three.js not loaded'); return; }
+  const T = window.THREE;
+
+  /* ── DOM ── */
+  const botWrap  = document.getElementById('bot-wrap');
+  const bubble   = document.getElementById('bot-bubble');
+  const greetSec = document.getElementById('bot-greet-section');
+  const factSec  = document.getElementById('bot-fact-section');
+  const phraseEl = document.getElementById('bot-phrase');
+  const editBtn  = document.getElementById('bot-edit-btn');
+  const stage    = document.getElementById('bot-stage-wrap');
+  if (!botWrap || !stage) return;
+
+  /* ── RENDERER ── */
+  const BW = 240, BH = 300;
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = `width:${BW}px;height:${BH}px;display:block;`;
+  botWrap.appendChild(canvas);
+  const renderer = new T.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  const PR = Math.min(window.devicePixelRatio, 2);
+  renderer.setPixelRatio(PR);
+  renderer.setSize(BW * PR, BH * PR, false);
+  renderer.setClearColor(0x000000, 0);
+
+  /* ── SCENE + CAMERA ── */
+  const scene  = new T.Scene();
+  const camera = new T.PerspectiveCamera(38, BW / BH, 0.1, 50);
+  camera.position.set(0, 0.32, 4.1);
+  camera.lookAt(0, 0.32, 0);
+
+  /* ── LIGHTS (3-point) ── */
+  scene.add(new T.AmbientLight(0xFFE0CC, 0.65));
+  const kL = new T.DirectionalLight(0xFFFFFF, 1.15);
+  kL.position.set(-3, 5, 4);
+  const fL = new T.DirectionalLight(0xAABBFF, 0.28);
+  fL.position.set(3, 1, 2);
+  const rL = new T.DirectionalLight(0xFF9030, 0.58);
+  rL.position.set(1, -2, -3);
+  scene.add(kL, fL, rL);
+
+  /* ── MATERIALS ── */
+  function mat(color, shi, spec, opts) {
+    return new T.MeshPhongMaterial(Object.assign({ color, shininess: shi || 60, specular: spec || 0x111111 }, opts || {}));
+  }
+  function basic(color, opts) { return new T.MeshBasicMaterial(Object.assign({ color }, opts || {})); }
+  const M = {
+    suit:   mat(0xF07C10, 88, 0xFF9040),
+    panel:  mat(0xF2F3F5, 165, 0xFFFFFF),
+    fur:    mat(0xF0E4C8, 18),
+    auburn: mat(0xB85C1A, 26),
+    dark:   mat(0x180C04, 55),
+    eye:    mat(0x3A1A06, 225, 0xFFFFFF),
+    nose:   mat(0x140808, 180, 0x666666),
+    muzzle: mat(0xEDE0C0, 14),
+    jet:    mat(0x8099AA, 195, 0xCCDDEE),
+    tongue: mat(0xC83060, 35),
+    teeth:  mat(0xFFFAF2, 78),
+    lip:    mat(0xC07850, 55),
+    chrome: mat(0xC0C4C8, 248, 0xFFFFFF),
+    helmet: mat(0xCCE8FF, 300, 0xFFFFFF, { transparent: true, opacity: 0.19 }),
+    orange: mat(0xF08030, 105),
+  };
+
+  /* ── HELPERS ── */
+  const G = T.BufferGeometry;
+  function m(geo, material) { return new T.Mesh(geo, material); }
+  function v(x, y, z) { return new T.Vector3(x, y, z); }
+  function clr(mesh, col, a) {
+    const c = mesh.clone();
+    c.material = basic(col, a !== undefined ? { transparent: true, opacity: a } : {});
+    return c;
+  }
+
+  /* ── CHARACTER ROOT ── */
+  const char = new T.Group();
+  scene.add(char);
+
+  /* ════ JETPACK ════ */
+  const jp = new T.Group();
+  jp.add(m(new T.BoxGeometry(0.22, 0.42, 0.13), M.jet));
+  [0.2, 0.04].forEach(y => {
+    const r = m(new T.BoxGeometry(0.10, 0.13, 0.10), mat(0x3A4A5C, 82));
+    r.position.set(0, y, -0.065);
+    jp.add(r);
+  });
+  jp.position.set(0, 0.10, -0.26);
+  char.add(jp);
+
+  /* ════ FLAMES ════ */
+  const flamesGrp = new T.Group();
+  flamesGrp.position.set(0, -0.22, -0.26);
+  const fM1 = basic(0xFF6600, { transparent: true, opacity: 0.88 });
+  const fM2 = basic(0xFFDD44, { transparent: true, opacity: 0.78 });
+  [[-0.06, fM1, 0.062, 0.26, -0.13], [0.06, fM1, 0.062, 0.26, -0.13],
+   [-0.06, fM2, 0.032, 0.16, -0.08], [0.06, fM2, 0.032, 0.16, -0.08]].forEach(([x, fm, r, h, y]) => {
+    const f = m(new T.ConeGeometry(r, h, 8), fm);
+    f.position.set(x, y, 0);
+    flamesGrp.add(f);
+  });
+  flamesGrp.visible = false;
+  char.add(flamesGrp);
+
+  /* ════ TAIL ════ */
+  const tailCurve = new T.CatmullRomCurve3([v(0.22,-0.08,-0.1),v(0.34,0.08,-0.04),v(0.42,0.22,0.04),v(0.38,0.34,0.1)]);
+  const tailMesh = m(new T.TubeGeometry(tailCurve, 12, 0.044, 8, false), M.auburn);
+  const tailTip  = m(new T.SphereGeometry(0.064, 12, 12), mat(0xE8A060, 20));
+  tailTip.position.copy(tailCurve.getPoint(1));
+  char.add(tailMesh, tailTip);
+
+  /* ════ BODY ════ */
+  const body = m(new T.CylinderGeometry(0.23, 0.27, 0.50, 20), M.suit);
+  body.position.set(0, 0.04, 0);
+  char.add(body);
+  // Rim glow
+  const bodyRim = m(new T.CylinderGeometry(0.235, 0.275, 0.50, 20), mat(0xFF9030, 200, 0xFF9030, { transparent: true, opacity: 0.26 }));
+  bodyRim.position.copy(body.position);
+  char.add(bodyRim);
+  // Shoulder ring
+  const shRing = m(new T.TorusGeometry(0.22, 0.022, 8, 24), mat(0xE88020, 105));
+  shRing.rotation.x = Math.PI / 2;
+  shRing.position.set(0, 0.24, 0);
+  char.add(shRing);
+
+  /* ════ CHEST PANEL ════ */
+  const cpanel = m(new T.BoxGeometry(0.32, 0.32, 0.08), M.panel);
+  cpanel.position.set(0, 0.06, 0.24);
+  const cpTop = m(new T.BoxGeometry(0.30, 0.30, 0.03), mat(0xE8EAED, 185, 0xFFFFFF));
+  cpTop.position.set(0, 0.06, 0.287);
+  char.add(cpanel, cpTop);
+
+  // Viewport circle
+  const vpc = m(new T.CylinderGeometry(0.068, 0.068, 0.04, 20), mat(0x1A3560, 82));
+  vpc.rotation.x = Math.PI / 2;
+  vpc.position.set(0, 0.165, 0.292);
+  const vpcRing = m(new T.TorusGeometry(0.068, 0.01, 6, 24), mat(0x4D8FFF, 200, 0x4D8FFF));
+  vpcRing.position.set(0, 0.165, 0.298);
+  char.add(vpc, vpcRing);
+
+  /* ── LCM badge (canvas texture, rectangular) ── */
+  const bcv = document.createElement('canvas');
+  bcv.width = 256; bcv.height = 80;
+  const bx = bcv.getContext('2d');
+  bx.fillStyle = '#0C1E3C';
+  bx.beginPath(); bx.roundRect(0, 0, 256, 80, 10); bx.fill();
+  bx.strokeStyle = '#3D6FCC'; bx.lineWidth = 3;
+  bx.beginPath(); bx.roundRect(2, 2, 252, 76, 8); bx.stroke();
+  bx.font = 'bold 52px Arial,sans-serif';
+  bx.fillStyle = '#7EAAFF'; bx.textAlign = 'center'; bx.textBaseline = 'middle';
+  bx.shadowColor = '#4D8FFF'; bx.shadowBlur = 12;
+  bx.fillText('LCM', 128, 42);
+  const lcmMesh = m(new T.PlaneGeometry(0.24, 0.075), new T.MeshBasicMaterial({ map: new T.CanvasTexture(bcv) }));
+  lcmMesh.position.set(0, 0.055, 0.315);
+  char.add(lcmMesh);
+
+  /* ── DR Flag (canvas texture) ── */
+  const fcv = document.createElement('canvas');
+  fcv.width = 160; fcv.height = 100;
+  const fc = fcv.getContext('2d');
+  fc.fillStyle = '#FFF'; fc.fillRect(0, 0, 160, 100);
+  fc.fillStyle = '#002D62'; fc.fillRect(0, 0, 68, 44); fc.fillRect(92, 56, 68, 44);
+  fc.fillStyle = '#CF142B'; fc.fillRect(92, 0, 68, 44); fc.fillRect(0, 56, 68, 44);
+  fc.fillStyle = '#FFF'; fc.fillRect(64, 0, 32, 100); fc.fillRect(0, 44, 160, 12);
+  fc.fillStyle = '#226622';
+  fc.beginPath(); fc.moveTo(80, 42); fc.lineTo(92, 50); fc.lineTo(92, 68);
+  fc.quadraticCurveTo(80, 76, 68, 68); fc.lineTo(68, 50); fc.closePath(); fc.fill();
+  fc.strokeStyle = '#FFF'; fc.lineWidth = 1.5; fc.stroke();
+  const flagMesh = m(new T.PlaneGeometry(0.24, 0.145), new T.MeshBasicMaterial({ map: new T.CanvasTexture(fcv) }));
+  flagMesh.position.set(0, -0.072, 0.315);
+  char.add(flagMesh);
+
+  /* ════ ARMS ════ */
+  function makeArm(side) {
+    const g = new T.Group();
+    const upper = m(new T.CylinderGeometry(0.072, 0.076, 0.28, 12), M.suit.clone());
+    upper.rotation.z = (Math.PI / 2 - 0.12) * side;
+    upper.position.set(side * 0.28, 0.12, 0);
+    const wrist = m(new T.CylinderGeometry(0.076, 0.076, 0.056, 12), M.panel.clone());
+    wrist.rotation.z = Math.PI / 2;
+    wrist.position.set(side * 0.44, 0.08, 0);
+    const glove = m(new T.SphereGeometry(0.082, 14, 14), M.chrome.clone());
+    glove.scale.set(1, 0.68, 0.88);
+    glove.position.set(side * 0.50, 0.08, 0);
+    g.add(upper, wrist, glove);
+    return g;
+  }
+  const armL = makeArm(-1);
+  const armR = makeArm(1);
+  char.add(armL, armR);
+
+  /* ════ LEGS ════ */
+  function makeLeg(side) {
+    const g = new T.Group();
+    const upper = m(new T.CylinderGeometry(0.088, 0.084, 0.34, 14), M.suit.clone());
+    upper.position.set(side * 0.15, -0.34, 0);
+    const knee = m(new T.SphereGeometry(0.098, 14, 14), M.panel.clone());
+    knee.scale.set(1, 0.48, 0.82);
+    knee.position.set(side * 0.15, -0.20, 0.05);
+    const boot = m(new T.BoxGeometry(0.18, 0.10, 0.22), M.panel.clone());
+    boot.position.set(side * 0.15, -0.53, 0.04);
+    const sole = m(new T.BoxGeometry(0.18, 0.04, 0.22), mat(0x788898, 78));
+    sole.position.set(side * 0.15, -0.58, 0.04);
+    g.add(upper, knee, boot, sole);
+    return g;
+  }
+  const legL = makeLeg(-1);
+  const legR = makeLeg(1);
+  char.add(legL, legR);
+
+  /* ════ NECK RING ════ */
+  const neckR = m(new T.CylinderGeometry(0.148, 0.148, 0.095, 22), M.chrome.clone());
+  neckR.position.set(0, 0.34, 0);
+  char.add(neckR);
+
+  /* ════ HEAD GROUP ════ */
+  const headGrp = new T.Group();
+  headGrp.position.set(0, 0.64, 0);
+
+  headGrp.add(m(new T.SphereGeometry(0.28, 32, 32), M.fur));
+
+  // Crown patch (blenheim chestnut)
+  const crown = m(new T.SphereGeometry(0.2, 20, 20), M.auburn.clone());
+  crown.position.set(0, 0.13, 0); crown.scale.set(0.92, 0.58, 0.82);
+  headGrp.add(crown);
+
+  // White blaze
+  const blaze = m(new T.SphereGeometry(0.10, 14, 14), mat(0xFBF1E4, 8));
+  blaze.position.set(0, 0.04, 0.25); blaze.scale.set(0.55, 0.82, 0.48);
+  headGrp.add(blaze);
+
+  /* ── Ears ── */
+  function makeEar(side) {
+    const g = new T.Group();
+    const body = m(new T.SphereGeometry(0.09, 16, 16), M.auburn.clone());
+    body.scale.set(0.72, 2.6, 0.6); body.position.set(0, -0.14, 0);
+    const tip = m(new T.SphereGeometry(0.075, 14, 14), M.auburn.clone());
+    tip.scale.set(0.70, 0.70, 0.60); tip.position.set(0, -0.38, 0.02);
+    g.add(body, tip);
+    g.position.set(side * 0.26, 0.06, 0.02);
+    g.rotation.z = side * 0.20;
+    g.userData = { pos: 0, vel: 0 };
+    return g;
+  }
+  const earLG = makeEar(-1);
+  const earRG = makeEar(1);
+  headGrp.add(earLG, earRG);
+
+  /* ── Eyes ── */
+  function makeEye3D(side) {
+    const g = new T.Group();
+    g.add(m(new T.SphereGeometry(0.076, 20, 20), mat(0xEDE3CD, 48)));
+    const iris = m(new T.SphereGeometry(0.058, 18, 18), M.eye.clone());
+    iris.position.z = 0.038;
+    const pupil = m(new T.SphereGeometry(0.036, 14, 14), M.dark.clone());
+    pupil.position.z = 0.062;
+    const hl = m(new T.SphereGeometry(0.018, 8, 8), basic(0xFFFFFF));
+    hl.position.set(-0.028, 0.028, 0.09);
+    // Blink plane
+    const blink = m(new T.PlaneGeometry(0.16, 0.155), M.fur.clone());
+    blink.position.z = 0.096; blink.scale.y = 0;
+    blink.userData.isBlink = true;
+    g.add(iris, pupil, hl, blink);
+    g.position.set(side * 0.12, 0.06, 0.23);
+    return g;
+  }
+  const eyeL3 = makeEye3D(-1);
+  const eyeR3 = makeEye3D(1);
+  headGrp.add(eyeL3, eyeR3);
+
+  /* ── Eyebrows ── */
+  function makeBrow(side) {
+    const pts = side < 0
+      ? [v(-0.17,0.195,0.23),v(-0.12,0.21,0.26),v(-0.05,0.196,0.23)]
+      : [v(0.05,0.196,0.23),v(0.12,0.21,0.26),v(0.17,0.195,0.23)];
+    return m(new T.TubeGeometry(new T.CatmullRomCurve3(pts), 6, 0.010, 5, false), mat(0x7A3C10, 60));
+  }
+  headGrp.add(makeBrow(-1), makeBrow(1));
+
+  /* ── Muzzle ── */
+  const muzzle = m(new T.SphereGeometry(0.14, 22, 22), M.muzzle.clone());
+  muzzle.scale.set(1.02, 0.76, 0.90);
+  muzzle.position.set(0, -0.10, 0.22);
+  headGrp.add(muzzle);
+
+  /* ── Nose ── */
+  const nose3 = m(new T.SphereGeometry(0.058, 16, 16), M.nose.clone());
+  nose3.scale.set(1.38, 0.78, 0.88);
+  nose3.position.set(0, -0.035, 0.28);
+  headGrp.add(nose3);
+
+  /* ── Mouth group (lip sync) ── */
+  const mouthGrp = new T.Group();
+  mouthGrp.position.set(0, -0.19, 0.25);
+  const mouthCav = m(new T.SphereGeometry(0.10, 16, 16), M.dark.clone());
+  mouthCav.scale.set(1.10, 0.01, 0.68);
+  const toothMesh = m(new T.BoxGeometry(0.165, 0.024, 0.06), M.teeth.clone());
+  toothMesh.position.set(0, 0.018, 0); toothMesh.scale.y = 0;
+  const tongMesh = m(new T.SphereGeometry(0.065, 14, 14), M.tongue.clone());
+  tongMesh.scale.set(1.2, 0.01, 0.88); tongMesh.position.set(0, -0.02, 0);
+  const lipU = m(new T.TubeGeometry(new T.CatmullRomCurve3([v(-0.12,0.022,0.02),v(0,0.042,0.038),v(0.12,0.022,0.02)]),7,0.012,6,false),M.lip.clone());
+  const lipD = m(new T.TubeGeometry(new T.CatmullRomCurve3([v(-0.12,0.022,0.02),v(0,-0.076,0.018),v(0.12,0.022,0.02)]),7,0.012,6,false),M.lip.clone());
+  mouthGrp.add(mouthCav, toothMesh, tongMesh, lipU, lipD);
+  headGrp.add(mouthGrp);
+
+  /* ── Cheeks ── */
+  [-0.22, 0.22].forEach(x => {
+    const blush = m(new T.SphereGeometry(0.08, 10, 10), mat(0xCC4030, 0, 0x000000, { transparent: true, opacity: 0.13 }));
+    blush.position.set(x, -0.07, 0.20); blush.scale.set(1, 0.70, 0.50);
+    headGrp.add(blush);
+  });
+
+  char.add(headGrp);
+
+  /* ════ HELMET ════ */
+  const helmGlass = m(new T.SphereGeometry(0.34, 32, 32), M.helmet.clone());
+  helmGlass.position.set(0, 0.64, 0);
+  const helmFresnel = m(new T.SphereGeometry(0.345, 32, 32), mat(0x88AAFF, 0, 0x000000, { transparent: true, opacity: 0.11, side: T.BackSide }));
+  helmFresnel.position.set(0, 0.64, 0);
+  const helmRing = m(new T.TorusGeometry(0.265, 0.028, 10, 42), M.chrome.clone());
+  helmRing.position.set(0, 0.42, 0); helmRing.rotation.x = Math.PI / 2;
+  // Visor reflections
+  const ref1 = m(new T.PlaneGeometry(0.20, 0.052), basic(0xFFFFFF, { transparent: true, opacity: 0.78 }));
+  ref1.position.set(-0.06, 0.78, 0.31); ref1.rotation.z = 0.18;
+  const ref2 = m(new T.PlaneGeometry(0.10, 0.026), basic(0xFFFFFF, { transparent: true, opacity: 0.40 }));
+  ref2.position.set(-0.04, 0.72, 0.316); ref2.rotation.z = 0.22;
+  char.add(helmGlass, helmFresnel, helmRing, ref1, ref2);
+  // Bolts
+  [-0.82, 0.22].forEach(angle => {
+    const b = m(new T.SphereGeometry(0.025, 8, 8), M.chrome.clone());
+    b.position.set(Math.cos(angle) * 0.275, 0.42, Math.sin(angle) * 0.275);
+    char.add(b);
+  });
+
+  /* ════ SPRING PHYSICS ════ */
+  function sp(pos, vel, target, k, d) {
+    const nv = (vel + (target - pos) * k) * d;
+    return { pos: pos + nv, vel: nv };
+  }
+  let sqSt = { pos: 1, vel: 0 }, sqActive = false, flipped = false;
+  function triggerSquash(a) { sqSt = { pos: a, vel: 0 }; sqActive = true; }
+  function setFlip(fromRight) {
+    flipped = fromRight;
+    if (!sqActive) char.scale.set(fromRight ? -1 : 1, 1, 1);
+  }
+
+  /* ════ ANIMATION LOOPS ════ */
+  let animState = 'idle'; // 'flight' | 'bob'
+  let bobT = 0, prevDy = 0, armT = 0, tailT = 0;
+  let earLS = { pos: 0, vel: 0 }, earRS = { pos: 0, vel: 0 };
+  // Directional lean springs
+  let flightDir  = 0;   // -1 = moving left (screen), +1 = moving right (screen)
+  let leanSp     = { pos: 0, vel: 0 }; // body lean (local Z rotation)
+  let headLeanSp = { pos: 0, vel: 0 }; // head lean (extra)
+  let headNodSp  = { pos: 0, vel: 0 }; // head nod (X rotation) on landing
+  let armLeanSp  = { pos: 0, vel: 0 }; // arm trail angle
+  let legTrailSp = { pos: 0, vel: 0 }; // leg trail angle
+
+  // Blink
+  let blinkOpen = 1, blinkDir = 0, blinkIv = null;
+  function startBlink() {
+    function doBlink() { blinkDir = -1; setTimeout(() => { blinkDir = 1; }, 130); }
+    doBlink();
+    blinkIv = setInterval(doBlink, 3000 + Math.random() * 2400);
+  }
+  function stopBlink() {
+    if (blinkIv) clearInterval(blinkIv);
+    blinkOpen = 1; blinkDir = 0;
+    [eyeL3, eyeR3].forEach(e => e.children.forEach(c => { if (c.userData.isBlink) c.scale.y = 0; }));
+  }
+
+  // Lip sync
+  let lipTmr = null, mouthTarget = 0, mouthCur = 0;
+  function startLipSync(phrase) {
+    if (lipTmr) clearTimeout(lipTmr);
+    let open = false;
+    function lip() {
+      open = !open;
+      mouthTarget = open ? (0.3 + Math.random() * 0.7) : 0;
+      lipTmr = setTimeout(lip, open ? (65 + Math.random() * 100) : (50 + Math.random() * 70));
+    }
+    setTimeout(lip, 340);
+  }
+  function stopLipSync() {
+    if (lipTmr) { clearTimeout(lipTmr); lipTmr = null; }
+    mouthTarget = 0;
+  }
+
+  // RAF render loop
+  (function loop() {
+    requestAnimationFrame(loop);
+    tailT += 0.082;
+    tailMesh.rotation.y   = Math.sin(tailT) * 0.42;
+    tailTip.rotation.y    = Math.sin(tailT) * 0.42;
+
+    // Squash & stretch
+    if (sqActive) {
+      sqSt = sp(sqSt.pos, sqSt.vel, 1.0, 0.22, 0.72);
+      const sy = sqSt.pos, sx = (2 - sy) * (flipped ? -1 : 1);
+      char.scale.set(sx, sy, 2 - sy);
+      if (Math.abs(sqSt.pos - 1) < 0.003 && Math.abs(sqSt.vel) < 0.003) {
+        char.scale.set(flipped ? -1 : 1, 1, 1); sqActive = false;
+      }
+    }
+
+    // Blink animation
+    if (blinkDir !== 0) {
+      blinkOpen = Math.max(0, Math.min(1, blinkOpen + blinkDir * 0.14));
+      if (blinkOpen <= 0 && blinkDir < 0) blinkDir = 0;
+      if (blinkOpen >= 1 && blinkDir > 0) { blinkOpen = 1; blinkDir = 0; }
+      [eyeL3, eyeR3].forEach(e => e.children.forEach(c => { if (c.userData.isBlink) c.scale.y = 1 - blinkOpen; }));
+    }
+
+    // Lip sync smooth
+    mouthCur += (mouthTarget - mouthCur) * 0.26;
+    const mo = mouthCur;
+    mouthCav.scale.set(1.10, mo * 0.42, 0.68);
+    toothMesh.scale.y = mo > 0.10 ? mo * 0.52 : 0;
+    tongMesh.scale.set(1.2, mo > 0.50 ? (mo - 0.50) * 0.64 : 0, 0.88);
+
+    // Head nod spring (landing impact)
+    headNodSp = sp(headNodSp.pos, headNodSp.vel, 0, 0.16, 0.74);
+    headGrp.rotation.x = headNodSp.pos;
+
+    // Bob
+    if (animState === 'bob') {
+      bobT += 0.022;
+      const dy = Math.sin(bobT) * 0.06;
+      const acc = (dy - prevDy) * 32; prevDy = dy;
+      headGrp.position.y = 0.64 + dy * 0.28;
+      // Spring lean back to neutral
+      leanSp     = sp(leanSp.pos,     leanSp.vel,     0, 0.12, 0.80);
+      headLeanSp = sp(headLeanSp.pos, headLeanSp.vel, 0, 0.10, 0.82);
+      armLeanSp  = sp(armLeanSp.pos,  armLeanSp.vel,  0, 0.12, 0.80);
+      legTrailSp = sp(legTrailSp.pos, legTrailSp.vel, 0, 0.12, 0.80);
+      char.rotation.z   = Math.sin(bobT * 0.6) * 0.038 + leanSp.pos;
+      headGrp.rotation.z = headLeanSp.pos;
+      headGrp.rotation.y = 0;
+      armL.rotation.z   = armLeanSp.pos; armR.rotation.z = armLeanSp.pos;
+      legL.rotation.x   = legTrailSp.pos; legR.rotation.x = legTrailSp.pos;
+      earLS = sp(earLS.pos, earLS.vel, -acc * 0.16, 0.14, 0.76);
+      earRS = sp(earRS.pos, earRS.vel, -acc * 0.13, 0.12, 0.78);
+      earLG.rotation.z = -0.20 + earLS.pos * 0.16;
+      earRG.rotation.z =  0.20 - earRS.pos * 0.14;
+    }
+
+    // Flight
+    if (animState === 'flight') {
+      armT += 0.09;
+      const a = Math.sin(armT) * 0.36;
+
+      // Directional lean — local Z = screen Z * flip factor
+      const leanTarget   = flightDir * 0.28 * (flipped ? -1 : 1);
+      const hLeanTarget  = flightDir * 0.44 * (flipped ? -1 : 1);
+      const armTarget    = flightDir * 0.18 * (flipped ? -1 : 1);
+      const legTarget    = -flightDir * 0.22 * (flipped ? -1 : 1); // legs trail behind
+
+      leanSp     = sp(leanSp.pos,     leanSp.vel,     leanTarget,  0.10, 0.82);
+      headLeanSp = sp(headLeanSp.pos, headLeanSp.vel, hLeanTarget, 0.09, 0.84);
+      armLeanSp  = sp(armLeanSp.pos,  armLeanSp.vel,  armTarget,   0.10, 0.82);
+      legTrailSp = sp(legTrailSp.pos, legTrailSp.vel, legTarget,   0.10, 0.82);
+
+      char.rotation.z    = leanSp.pos;
+      headGrp.rotation.z = headLeanSp.pos;
+      headGrp.rotation.y = -flightDir * (flipped ? -1 : 1) * 0.18; // look toward destination
+
+      // Arms swing + lean trail
+      armL.rotation.x = a;  armL.rotation.z = armLeanSp.pos;
+      armR.rotation.x = -a; armR.rotation.z = armLeanSp.pos;
+      // Legs trail behind movement direction
+      legL.rotation.x = Math.sin(armT + Math.PI / 2) * 0.26 + legTrailSp.pos;
+      legR.rotation.x = Math.sin(armT) * 0.26 + legTrailSp.pos;
+
+      earLG.rotation.z =  0.50 + Math.sin(armT * 0.7) * 0.08;
+      earRG.rotation.z = -0.50 + Math.sin(armT * 0.7 + 1) * 0.08;
+      if (flamesGrp.visible) {
+        flamesGrp.children.forEach(f => {
+          f.scale.y = 0.80 + Math.random() * 0.42;
+          if (f.material.opacity !== undefined) f.material.opacity = 0.62 + Math.random() * 0.30;
+        });
+      }
+    }
+
+    renderer.render(scene, camera);
+  })();
+
+  /* ════ PHRASE MANAGEMENT ════ */
+  const TODAY_KEY = 'lcm_frase_' + new Date().toDateString();
+  const FALLBACK = ['"El éxito es la suma de pequeños esfuerzos repetidos cada día."','"Comienza donde estás. Usa lo que tienes. Haz lo que puedas."','"La actitud es una pequeña cosa que hace una gran diferencia."','"Hoy es un buen día para tener un gran día."','"La disciplina es el puente entre metas y logros."','"No cuentes los días, haz que los días cuenten."','"El trabajo duro supera al talento cuando el talento no trabaja duro."','"Cada día es una nueva oportunidad para cambiar tu vida."','"El único modo de hacer un gran trabajo es amar lo que haces."','"La perseverancia no es una carrera larga, son muchas carreras cortas."','"Empieza haciendo lo necesario, y de repente estarás haciendo lo imposible."','"El secreto del éxito está en la constancia del propósito."','"Lo que hagas hoy puede mejorar todos tus mañanas."','"Las grandes cosas nunca vienen de zonas de confort."','"Un paso adelante, aunque sea pequeño, es un paso en la dirección correcta."','"La motivación te hace comenzar, el hábito te hace continuar."','"Cree en ti mismo y todo lo demás vendrá solo."','"No busques el éxito, busca la excelencia y el éxito llegará solo."','"Todo parece imposible hasta que se hace."','"La paciencia y el tiempo hacen más que la fuerza."','"El esfuerzo de hoy es el éxito de mañana."','"Donde hay voluntad, hay un camino."','"Somos lo que hacemos repetidamente. La excelencia es un hábito."','"Un pequeño progreso cada día suma grandes resultados."','"La vida es 10% lo que te sucede y 90% cómo reaccionas ante ello."','"No importa lo lento que vayas, mientras no te detengas."','"Haz de cada día tu obra maestra."','"La única limitación es aquella que tú te pones a ti mismo."','"El que madruga, Dios le ayuda."','"Querer es poder."'];
+  function getFallback() { return FALLBACK[new Date().getDate() % FALLBACK.length]; }
+  async function fetchPhrase() {
+    try { const r = await fetch('https://zenquotes.io/api/today'); const d = await r.json(); if (d && d[0]) return `"${d[0].q}" — ${d[0].a}`; } catch (_) {}
+    return null;
+  }
+  async function getPhrase() {
+    const s = localStorage.getItem(TODAY_KEY); if (s) return s;
+    const now = new Date(), cut = new Date(); cut.setHours(6, 30, 0, 0);
+    if (now >= cut) { const o = await fetchPhrase(); if (o) { localStorage.setItem(TODAY_KEY, o); return o; } }
+    return getFallback();
+  }
+  if (editBtn) editBtn.addEventListener('click', () => {
+    const cur = localStorage.getItem(TODAY_KEY) || '';
+    const nw = prompt('✏️ Escribe la frase del día:', cur);
+    if (nw !== null && nw.trim()) { localStorage.setItem(TODAY_KEY, nw.trim()); if (phraseEl) phraseEl.textContent = nw.trim(); }
+  });
+
+  /* ════ PLACEMENT ════ */
+  const BOT_W = 240;
+  function stageW() { return stage.offsetWidth; }
+  function target() { return { x: stageW() / 2 - BOT_W / 2, y: 180 }; }
+  function eio(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+  function bezPt(t, p0, c, p1) {
+    const e = eio(t);
+    return { x: (1-e)*(1-e)*p0.x+2*(1-e)*e*c.x+e*e*p1.x, y: (1-e)*(1-e)*p0.y+2*(1-e)*e*c.y+e*e*p1.y };
+  }
+  function animPath(p0, ct, p1, dur, onStep, onDone) {
+    const t0 = performance.now();
+    (function fr(now) {
+      const p = Math.min((now - t0) / dur, 1), pt = bezPt(p, p0, ct, p1);
+      onStep(pt.x, pt.y);
+      if (p < 1) requestAnimationFrame(fr); else onDone();
+    })(performance.now());
+  }
+  function placeBot(x, y) { botWrap.style.left = x + 'px'; botWrap.style.top = y + 'px'; }
+  function placeBubble(bx, by) {
+    const bw = 270, bh = bubble.offsetHeight || 155;
+    bubble.style.left = Math.max(6, Math.min(bx + BOT_W / 2 - bw / 2, stageW() - bw - 6)) + 'px';
+    bubble.style.top  = Math.max(6, by - bh - 18) + 'px';
+  }
+  function setFlames(on) { flamesGrp.visible = on; }
+
+  /* ── Bob wrapper (CSS + 3D combined) ── */
+  let bobRAF = null;
+  function startBob(bx, by) {
+    animState = 'bob'; bobT = 0; prevDy = 0;
+    earLS = { pos: 0, vel: 0 }; earRS = { pos: 0, vel: 0 };
+    let lt = 0, lp = 0;
+    function bob() {
+      lt += 0.022;
+      const dy = Math.sin(lt) * 7;
+      const acc = (dy - lp) * 38; lp = dy;
+      placeBot(bx, by + dy);
+      placeBubble(bx, by + dy);
+      // Mirror ear spring to CSS tilt
+      earLS = sp(earLS.pos, earLS.vel, -acc * 0.17, 0.14, 0.76);
+      earRS = sp(earRS.pos, earRS.vel, -acc * 0.14, 0.12, 0.78);
+      bobRAF = requestAnimationFrame(bob);
+    }
+    bobRAF = requestAnimationFrame(bob);
+  }
+  function stopBob() {
+    if (bobRAF) { cancelAnimationFrame(bobRAF); bobRAF = null; }
+    animState = 'idle'; char.rotation.z = 0;
+  }
+
+  /* ── Bubble phases ── */
+  let greetTmr = null;
+  function showBubble(phrase) {
+    if (greetTmr) { clearTimeout(greetTmr); greetTmr = null; }
+    if (greetSec) { greetSec.style.display = 'block'; greetSec.style.opacity = '1'; greetSec.style.transition = 'none'; }
+    if (factSec)  { factSec.style.display  = 'none';  factSec.style.opacity  = '0'; }
+    bubble.style.opacity = '0'; bubble.style.transform = 'scale(0.72) translateY(10px)';
+    bubble.style.transition = 'none'; bubble.style.display = 'block';
+    requestAnimationFrame(() => {
+      bubble.style.transition = 'opacity .35s ease, transform .38s cubic-bezier(.17,.67,.35,1.25)';
+      bubble.style.opacity = '1'; bubble.style.transform = 'scale(1) translateY(0)';
+    });
+    startLipSync('Bienvenidos a La Crema Multiservicios');
+    startBlink();
+    greetTmr = setTimeout(() => {
+      stopLipSync();
+      if (greetSec) { greetSec.style.transition = 'opacity .45s'; greetSec.style.opacity = '0'; }
+      setTimeout(() => {
+        if (greetSec) greetSec.style.display = 'none';
+        if (phraseEl) phraseEl.textContent = phrase;
+        if (factSec) {
+          factSec.style.display = 'block'; factSec.style.opacity = '0';
+          factSec.style.transition = 'opacity .45s';
+          requestAnimationFrame(() => { factSec.style.opacity = '1'; });
+        }
+        startLipSync('Sabías que ' + phrase);
+      }, 460);
+    }, 4000);
+  }
+  function hideBubble() {
+    if (greetTmr) { clearTimeout(greetTmr); greetTmr = null; }
+    bubble.style.transition = 'opacity .2s, transform .2s';
+    bubble.style.opacity = '0'; bubble.style.transform = 'scale(0.82) translateY(4px)';
+    setTimeout(() => { bubble.style.display = 'none'; }, 230);
+    stopLipSync(); stopBlink(); animState = 'idle'; char.rotation.z = 0;
+  }
+
+  /* ════ MAIN CYCLE ════ */
+  const CYCLE_MS = 120000, ENTER_MS = 3200, SHOW_MS = 52000, EXIT_MS = 2400, PAUSE_MS = 1800;
+  function triggerLandingNod() {
+    headNodSp = { pos: -0.22, vel: 0 }; // quick forward nod on impact
+    triggerSquash(0.78);
+  }
+  async function cycle() {
+    const phrase = await getPhrase();
+    const sw = stageW(), tgt = target();
+    const p0R = { x: sw + 160, y: tgt.y + 55 }, ctR = { x: sw * 0.72, y: tgt.y - 165 };
+
+    placeBot(p0R.x, p0R.y); botWrap.style.display = 'block';
+    // ── Enter from RIGHT → flying LEFT (flightDir = -1 in screen, but char is flipped)
+    flightDir = -1;
+    setFlip(true); setFlames(true); animState = 'flight'; triggerSquash(1.20);
+    animPath(p0R, ctR, tgt, ENTER_MS, (x, y) => placeBot(x, y), () => {
+      animState = 'idle'; setFlames(false); setFlip(true);
+      flightDir = 0; triggerLandingNod();
+      startBob(tgt.x, tgt.y); showBubble(phrase);
+      setTimeout(() => {
+        stopBob(); hideBubble();
+        // ── Exit to RIGHT → flying RIGHT (flightDir = +1)
+        flightDir = 1;
+        setFlames(true); triggerSquash(1.18); animState = 'flight';
+        animPath(tgt, { x: sw * 0.72, y: tgt.y - 110 }, p0R, EXIT_MS, (x, y) => placeBot(x, y), () => {
+          animState = 'idle'; setFlames(false); flightDir = 0;
+          setTimeout(() => {
+            const tgt2 = target(), p0L = { x: -160, y: tgt2.y + 55 }, ctL = { x: sw * 0.28, y: tgt2.y - 165 };
+            placeBot(p0L.x, p0L.y);
+            // ── Enter from LEFT → flying RIGHT (flightDir = +1)
+            flightDir = 1;
+            setFlip(false); setFlames(true); animState = 'flight'; triggerSquash(1.20);
+            animPath(p0L, ctL, tgt2, ENTER_MS, (x, y) => placeBot(x, y), () => {
+              animState = 'idle'; setFlames(false); setFlip(false);
+              flightDir = 0; triggerLandingNod();
+              startBob(tgt2.x, tgt2.y); showBubble(phrase);
+              setTimeout(() => {
+                stopBob(); hideBubble();
+                // ── Exit to LEFT → flying LEFT (flightDir = -1)
+                flightDir = -1;
+                setFlames(true); triggerSquash(1.18); animState = 'flight';
+                animPath(tgt2, { x: sw * 0.28, y: tgt2.y - 110 }, p0L, EXIT_MS, (x, y) => placeBot(x, y), () => {
+                  animState = 'idle'; setFlames(false); flightDir = 0;
+                  botWrap.style.display = 'none';
+                  setTimeout(cycle, Math.max(0, CYCLE_MS - (ENTER_MS + SHOW_MS + EXIT_MS + PAUSE_MS) * 2));
+                });
+              }, SHOW_MS);
+            });
+          }, PAUSE_MS);
+        });
+      }, SHOW_MS);
+    });
+  }
+  setTimeout(cycle, 4000);
+})();
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   4. SCROLL REVEAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold: 0.1 }
+);
+document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   5. PAPELERÍA CATALOG
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const PAP_PRICE_KEY = 'lcm_pap_prices';
+const PAP_IMG_KEY   = 'lcm_pap_imgs';
+
+// Category gradient themes
+const CAT_THEME = {
+  'Cartulinas & Papel':    { bg:'linear-gradient(135deg,#0C2040,#1E4080)', emoji:'📄' },
+  'Foamy & Manualidades':  { bg:'linear-gradient(135deg,#2A0A40,#5A1A80)', emoji:'🎨' },
+  'Escritura & Corrección':{ bg:'linear-gradient(135deg,#0A2A1A,#0A5A2A)', emoji:'✏️' },
+  'Tijeras & Sacapuntas':  { bg:'linear-gradient(135deg,#2A1A0A,#6A3A0A)', emoji:'✂️' },
+  'Organización & Archivo':{ bg:'linear-gradient(135deg,#0A1A2A,#1A4A6A)', emoji:'📁' },
+  'Pegamentos & Silicona': { bg:'linear-gradient(135deg,#2A0A0A,#6A1A1A)', emoji:'🔩' },
+};
+
+const PAP_PRODUCTS = [
+  /* ─ Cartulinas & Papel ─ */
+  { id:'p01', cat:'Cartulinas & Papel',  name:'Cartulina LBrand B',               barcode:'7461259116639', price:18.00,  emoji:'📄', wiki:'Card stock' },
+  { id:'p02', cat:'Cartulinas & Papel',  name:'Cartulina Ofi-Nota (pequeña)',      barcode:'7501474100049', price:9.90,   emoji:'📋', wiki:'Construction paper' },
+  { id:'p03', cat:'Cartulinas & Papel',  name:'Cartulina Ofi-Nota (mediana)',      barcode:'7592474100056', price:9.90,   emoji:'📋', wiki:'Construction paper' },
+  { id:'p04', cat:'Cartulinas & Papel',  name:'Cartulina Ofi-Nota (grande)',       barcode:'7592474100025', price:9.90,   emoji:'📋', wiki:'Construction paper' },
+  { id:'p05', cat:'Cartulinas & Papel',  name:'Papel Tissue 5PCS',                barcode:'8430711424253', price:27.00,  emoji:'🧻', wiki:'Tissue paper' },
+  { id:'p06', cat:'Cartulinas & Papel',  name:'Papel Tissue 5PCS (B)',             barcode:'8430710424278', price:27.00,  emoji:'🧻', wiki:'Tissue paper' },
+  { id:'p07', cat:'Cartulinas & Papel',  name:'Papel Tissue 5PCS (C)',             barcode:'8430711424277', price:27.00,  emoji:'🧻', wiki:'Tissue paper' },
+  { id:'p08', cat:'Cartulinas & Papel',  name:'Papel Tissue 5PCS (D)',             barcode:'8430711424208', price:27.00,  emoji:'🧻', wiki:'Tissue paper' },
+  { id:'p09', cat:'Cartulinas & Papel',  name:'Papel Tissue 5PCS (E)',             barcode:'8430710424223', price:27.00,  emoji:'🧻', wiki:'Tissue paper' },
+  { id:'p10', cat:'Cartulinas & Papel',  name:'Papel Adhesivo MER',               barcode:'7450119810336', price:175.50, emoji:'🏷️', wiki:'Label' },
+  { id:'p11', cat:'Cartulinas & Papel',  name:'Papel Construcción',               barcode:'7453078514604', price:108.00, emoji:'📃', wiki:'Construction paper' },
+  { id:'p12', cat:'Cartulinas & Papel',  name:'Papel Legal Sin Líneas (resma)',    barcode:'LCM-PAP-001',   price:200.00, emoji:'📃', wiki:'Ledger paper' },
+  { id:'p13', cat:'Cartulinas & Papel',  name:'Hoja InfoPrint Bond 20 8.5×11',    barcode:'LCM-PAP-002',   price:215.00, emoji:'🗒️', wiki:'Bond paper' },
+  /* ─ Foamy & Manualidades ─ */
+  { id:'p14', cat:'Foamy & Manualidades',name:'Foamy 20×30cms 10P (naranja)',     barcode:'8430768041861', price:81.00,  emoji:'🟧', wiki:'Ethylene-vinyl acetate' },
+  { id:'p15', cat:'Foamy & Manualidades',name:'Foamy 20×30cms 10P (verde)',       barcode:'8430770041866', price:81.00,  emoji:'🟩', wiki:'Ethylene-vinyl acetate' },
+  { id:'p16', cat:'Foamy & Manualidades',name:'Foamy 20×30cms 10P (rojo)',        barcode:'8430764041865', price:81.00,  emoji:'🟥', wiki:'Ethylene-vinyl acetate' },
+  { id:'p17', cat:'Foamy & Manualidades',name:'Foamy 20×30cms 10P (azul)',        barcode:'8430760041869', price:81.00,  emoji:'🟦', wiki:'Ethylene-vinyl acetate' },
+  { id:'p18', cat:'Foamy & Manualidades',name:'Foamy 20×30cms 10P (morado)',      barcode:'8430767041862', price:81.00,  emoji:'🟪', wiki:'Ethylene-vinyl acetate' },
+  { id:'p19', cat:'Foamy & Manualidades',name:'Foamy 8.5×11PLG ES (blanco)',      barcode:'MAN1172',       price:18.00,  emoji:'⬜', wiki:'Foam rubber' },
+  { id:'p20', cat:'Foamy & Manualidades',name:'Foamy 8.5×11PLG ES (negro)',       barcode:'MAN1169',       price:18.00,  emoji:'⬛', wiki:'Foam rubber' },
+  { id:'p21', cat:'Foamy & Manualidades',name:'Foamy 8.5×11PLG ES (rojo)',        barcode:'MAN1180',       price:18.00,  emoji:'🟥', wiki:'Foam rubber' },
+  { id:'p22', cat:'Foamy & Manualidades',name:'Foamy 8.5×11PLG ES (azul)',        barcode:'MAN1181',       price:18.00,  emoji:'🟦', wiki:'Foam rubber' },
+  { id:'p23', cat:'Foamy & Manualidades',name:'Foamy 20×30cms ESC (escarchado)',  barcode:'GLEVA009',      price:14.40,  emoji:'✨', wiki:'Glitter' },
+  { id:'p24', cat:'Foamy & Manualidades',name:'Foami Liso Surtido Set 10uds',     barcode:'LCM-FOA-001',   price:90.00,  emoji:'🎨', wiki:'Foam rubber' },
+  { id:'p25', cat:'Foamy & Manualidades',name:'Molde Foamy Moldea',               barcode:'7501214987352', price:135.00, emoji:'🖼️', wiki:'Craft foam' },
+  { id:'p26', cat:'Foamy & Manualidades',name:'Acuarela 12 Colores',              barcode:'7450007028294', price:126.00, emoji:'🖌️', wiki:'Watercolor painting' },
+  { id:'p27', cat:'Foamy & Manualidades',name:'Escarcha En Frasco',               barcode:'7450008493909', price:28.80,  emoji:'✨', wiki:'Glitter' },
+  { id:'p28', cat:'Foamy & Manualidades',name:'Escarcha 20/1 Blister',            barcode:'LCM-FOA-002',   price:85.00,  emoji:'🌟', wiki:'Glitter' },
+  { id:'p29', cat:'Foamy & Manualidades',name:'Stickers Decor HD/Caritas',        barcode:'LCM-FOA-003',   price:50.00,  emoji:'😊', wiki:'Sticker' },
+  { id:'p30', cat:'Foamy & Manualidades',name:'Calcomanía 20×25cm',               barcode:'8430762043762', price:10.80,  emoji:'🏷️', wiki:'Decal' },
+  { id:'p31', cat:'Foamy & Manualidades',name:'Bola Esterofon 15C',               barcode:'8430760040155', price:117.00, emoji:'⚪', wiki:'Polystyrene' },
+  { id:'p32', cat:'Foamy & Manualidades',name:'Bola Esterofon 10C',               barcode:'8430760040121', price:45.00,  emoji:'⚪', wiki:'Polystyrene' },
+  { id:'p33', cat:'Foamy & Manualidades',name:'Bolas Foam 5.5cm Pack×6',          barcode:'7450009184776', price:90.00,  emoji:'🔵', wiki:'Foam rubber' },
+  { id:'p34', cat:'Foamy & Manualidades',name:'Corneta Juegos 28C (amarillo)',     barcode:'8430423006884', price:25.50,  emoji:'🎺', wiki:'Party horn' },
+  { id:'p35', cat:'Foamy & Manualidades',name:'Corneta Juegos 28C (rojo)',         barcode:'8430422006885', price:25.50,  emoji:'🎺', wiki:'Party horn' },
+  /* ─ Escritura & Corrección ─ */
+  { id:'p36', cat:'Escritura & Corrección',name:'Crayones 12PCS ESC',             barcode:'7450119810183', price:58.50,  emoji:'🖍️', wiki:'Crayon' },
+  { id:'p37', cat:'Escritura & Corrección',name:'Corrector Tipo Lápiz',           barcode:'6931100517751', price:43.20,  emoji:'✏️', wiki:'Correction pen' },
+  { id:'p38', cat:'Escritura & Corrección',name:'Corrector Brocha (amarillo)',     barcode:'6950126100112', price:31.50,  emoji:'🖊️', wiki:'Correction fluid' },
+  { id:'p39', cat:'Escritura & Corrección',name:'Corrector Brocha (blanco)',       barcode:'6924561126709', price:40.50,  emoji:'🖊️', wiki:'Correction fluid' },
+  { id:'p40', cat:'Escritura & Corrección',name:'Marcador Pizarra (rojo)',         barcode:'4006381157995', price:52.20,  emoji:'🖊️', wiki:'Dry-erase marker' },
+  { id:'p41', cat:'Escritura & Corrección',name:'Resaltador Sparkli (amarillo)',   barcode:'6930691011051', price:14.40,  emoji:'💛', wiki:'Highlighter' },
+  { id:'p42', cat:'Escritura & Corrección',name:'Resaltador Sparkli (rosa)',       barcode:'6930691011013', price:14.40,  emoji:'🩷', wiki:'Highlighter' },
+  /* ─ Tijeras & Sacapuntas ─ */
+  { id:'p43', cat:'Tijeras & Sacapuntas', name:'Tijera 4.5PLG MERL',              barcode:'7453005287809', price:90.00,  emoji:'✂️', wiki:'Scissors' },
+  { id:'p44', cat:'Tijeras & Sacapuntas', name:'Tijera 5PLG Niñes',               barcode:'8430760042167', price:20.70,  emoji:'✂️', wiki:'Scissors' },
+  { id:'p45', cat:'Tijeras & Sacapuntas', name:'Sacapunta 2 Agujeros',            barcode:'7450119807001', price:36.00,  emoji:'✏️', wiki:'Pencil sharpener' },
+  { id:'p46', cat:'Tijeras & Sacapuntas', name:'Sacapunta 1PCS TRI',              barcode:'22029884',      price:13.50,  emoji:'✏️', wiki:'Pencil sharpener' },
+  { id:'p47', cat:'Tijeras & Sacapuntas', name:'Sacapunta 1 Agujero',             barcode:'7450209159390', price:18.90,  emoji:'✏️', wiki:'Pencil sharpener' },
+  { id:'p48', cat:'Tijeras & Sacapuntas', name:'Sacapunta Pointer',               barcode:'7453038467701', price:18.00,  emoji:'✏️', wiki:'Pencil sharpener' },
+  { id:'p49', cat:'Tijeras & Sacapuntas', name:'Sacapunta De Tarro 72 Uds',       barcode:'LCM-SAC-001',   price:110.00, emoji:'🗑️', wiki:'Pencil sharpener' },
+  /* ─ Organización & Archivo ─ */
+  { id:'p50', cat:'Organización & Archivo',name:'Grapadora Con Grapa',            barcode:'7450008861190', price:256.50, emoji:'📎', wiki:'Stapler' },
+  { id:'p51', cat:'Organización & Archivo',name:'Notas Adhesivas 3×',             barcode:'7453078514697', price:166.50, emoji:'📌', wiki:'Post-it note' },
+  { id:'p52', cat:'Organización & Archivo',name:'Folder de Colores 100uds',       barcode:'LCM-ARC-001',   price:560.00, emoji:'📁', wiki:'Document folder' },
+  { id:'p53', cat:'Organización & Archivo',name:'Folders Amarillo Manila 100 Uds',barcode:'LCM-ARC-002',   price:215.00, emoji:'🗂️', wiki:'Manila folder' },
+  { id:'p54', cat:'Organización & Archivo',name:'Folder Plástico x Unidad',       barcode:'LCM-ARC-003',   price:17.00,  emoji:'📂', wiki:'Document folder' },
+  /* ─ Pegamentos & Silicona ─ */
+  { id:'p55', cat:'Pegamentos & Silicona', name:'Pegamento Silicona 30ml',        barcode:'LCM-PEG-001',   price:25.00,  emoji:'🔧', wiki:'Hot-melt adhesive' },
+  { id:'p56', cat:'Pegamentos & Silicona', name:'Pegamento Silicona 60ml',        barcode:'LCM-PEG-002',   price:40.00,  emoji:'🔧', wiki:'Hot-melt adhesive' },
+  { id:'p57', cat:'Pegamentos & Silicona', name:'Pegamento Silicona 100ml',       barcode:'LCM-PEG-003',   price:55.00,  emoji:'🔧', wiki:'Hot-melt adhesive' },
+  { id:'p58', cat:'Pegamentos & Silicona', name:'Pegamento Silicona 250ml',       barcode:'LCM-PEG-004',   price:140.00, emoji:'🧴', wiki:'Hot-melt adhesive' },
+];
+
+/* ── Plastificado Services ── */
+const PLASTIFICADO = [
+  { id:'pl01', name:'Hoja A4',                desc:'Plastificado térmico tamaño estándar A4 (21×29.7 cm). Acabado brillante o mate.',               price:50,  emoji:'📄', bg:'linear-gradient(135deg,#0C2555,#1A4EA0)' },
+  { id:'pl02', name:'Hoja Legal',             desc:'Para papel legal 8.5×14". Ideal para contratos y documentos oficiales.',                          price:60,  emoji:'📋', bg:'linear-gradient(135deg,#0A3A1A,#167A30)' },
+  { id:'pl03', name:'Papel Foto 4×6"',        desc:'Protege tus fotos 10×15 cm con acabado cristal. Resistente al agua y al polvo.',                  price:30,  emoji:'🖼️', bg:'linear-gradient(135deg,#3A0A50,#7A1A9A)' },
+  { id:'pl04', name:'Papel Foto 5×7"',        desc:'Tamaño mediano 13×18 cm para retratos y recuerdos especiales.',                                   price:40,  emoji:'🖼️', bg:'linear-gradient(135deg,#50103A,#A0206A)' },
+  { id:'pl05', name:'Carné / ID',             desc:'Formato tarjeta estándar (86×54 mm) para identificaciones, carnés y badges.',                     price:25,  emoji:'💳', bg:'linear-gradient(135deg,#3A2A0A,#8A5A10)' },
+  { id:'pl06', name:'Hoja A3',                desc:'Tamaño grande A3 (29.7×42 cm). Para planos, afiches y carteleras decorativas.',                   price:80,  emoji:'🗺️', bg:'linear-gradient(135deg,#0A2A3A,#0A5A7A)' },
+  { id:'pl07', name:'Certificado / Diploma',  desc:'Tamaño carta o A4 para diplomas, reconocimientos y certificados. Acabado premium.',               price:60,  emoji:'📜', bg:'linear-gradient(135deg,#2A1A0A,#6A3A10)' },
+  { id:'pl08', name:'Menú / Carta',           desc:'Para menús de restaurantes, cartas informativas y láminas decorativas hasta Legal.',              price:55,  emoji:'📑', bg:'linear-gradient(135deg,#0A2A2A,#0A5A5A)' },
+  { id:'pl09', name:'Señalización (A5)',       desc:'Formato A5 (14.8×21 cm). Ideal para avisos, señales y etiquetas de mostrador.',                   price:35,  emoji:'🔖', bg:'linear-gradient(135deg,#1A0A3A,#3A1A7A)' },
+  { id:'pl10', name:'Bolsillo / Solapín',     desc:'Tamaño pequeño (hasta 9×6 cm) para porta-solapines, credenciales y etiquetas.',                   price:20,  emoji:'🏷️', bg:'linear-gradient(135deg,#2A0A0A,#6A1010)' },
+];
+
+let papActiveCat = 'Todos';
+let papView      = 'catalog';
+let _papRendered = false;
+const _imgCache  = {};
+
+/* ── Load saved prices ── */
+function papLoadPrices() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(PAP_PRICE_KEY) || '{}');
+    PAP_PRODUCTS.forEach(p => { if (saved[p.id] !== undefined) p.price = saved[p.id]; });
+  } catch (_) {}
+}
+function papSavePrices() {
+  const saved = {};
+  document.querySelectorAll('[data-pid]').forEach(el => {
+    const val = parseFloat(el.textContent.replace(/[^0-9.]/g, ''));
+    if (!isNaN(val)) saved[el.dataset.pid] = val;
+  });
+  localStorage.setItem(PAP_PRICE_KEY, JSON.stringify(saved));
+}
+
+/* ── Barcode helper ── */
+function renderBarcode(selector, code, height = 38, width = 1.4) {
+  if (!window.JsBarcode) return;
+  try { JsBarcode(selector, code, { format:'CODE128', width, height, displayValue:true, fontSize:9, textMargin:2, background:'#ffffff', lineColor:'#000000', margin:4 }); }
+  catch (_) {
+    try { JsBarcode(selector, code, { format:'CODE39', width, height, displayValue:true, fontSize:9, textMargin:2, background:'#ffffff', lineColor:'#000000', margin:4 }); }
+    catch (__) {}
+  }
+}
+
+/* ── Async product image loading: UPC Item DB → Wikipedia Thumbnail API ── */
+const PAP_IMG_LS = 'papimg_v2_';
+async function loadProductImg(p) {
+  if (_imgCache[p.id]) return _imgCache[p.id];
+  // Check localStorage cache
+  const lsKey = PAP_IMG_LS + p.id;
+  const cached = localStorage.getItem(lsKey);
+  if (cached) { _imgCache[p.id] = cached; return cached; }
+
+  // 1) Try UPC Item DB for products with real barcodes
+  if (/^\d{8,13}$/.test(p.barcode)) {
+    try {
+      const r = await fetch(`https://api.upcitemdb.com/prod/trial/lookup?upc=${p.barcode}`, { signal: AbortSignal.timeout(5000) });
+      const d = await r.json();
+      const url = d?.items?.[0]?.images?.[0] || null;
+      if (url) { _imgCache[p.id] = url; localStorage.setItem(lsKey, url); return url; }
+    } catch (_) {}
+  }
+
+  // 2) Fallback: Wikipedia Thumbnail API (CORS-enabled, no key needed)
+  if (p.wiki) {
+    try {
+      const api = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(p.wiki)}&prop=pageimages&piprop=thumbnail&pithumbsize=320&format=json&origin=*`;
+      const r = await fetch(api, { signal: AbortSignal.timeout(5000) });
+      const d = await r.json();
+      const pages = d?.query?.pages;
+      if (pages) {
+        const url = Object.values(pages)[0]?.thumbnail?.source || null;
+        if (url) { _imgCache[p.id] = url; localStorage.setItem(lsKey, url); return url; }
+      }
+    } catch (_) {}
+  }
+  return null;
+}
+function applyProductImg(p, imgEl, placeholderEl) {
+  loadProductImg(p).then(url => {
+    if (url && imgEl) {
+      imgEl.src = url;
+      imgEl.style.opacity = '0';
+      imgEl.onload = () => { imgEl.style.opacity = '1'; if (placeholderEl) placeholderEl.style.opacity = '0'; };
+      imgEl.onerror = () => { imgEl.style.display = 'none'; };
+    }
+  });
+}
+
+/* ── Category filter bar ── */
+function renderPapCategories() {
+  const cats = ['Todos', ...new Set(PAP_PRODUCTS.map(p => p.cat))];
+  const bar = document.getElementById('pap-cats');
+  bar.innerHTML = cats.map(c =>
+    `<button class="pap-cat-btn${c === papActiveCat ? ' active':''}" onclick="filterCat('${c}')">${c}</button>`
+  ).join('');
+}
+
+/* ══ CATALOG VIEW ══ */
+function renderCatalogView() {
+  papLoadPrices();
+  const theme = t => CAT_THEME[t] || { bg:'linear-gradient(135deg,#0C1A30,#1A3060)', emoji:'📦' };
+  const grid = document.getElementById('pap-grid');
+  grid.className = 'pap-grid';
+  grid.innerHTML = PAP_PRODUCTS.map(p => {
+    const t = theme(p.cat);
+    return `
+    <div class="pap-card pap-card-catalog" data-id="${p.id}" data-cat="${p.cat}" data-name="${p.name.toLowerCase()}">
+      <div class="pap-img-wrap">
+        <div class="pap-img-placeholder" style="background:${t.bg}" id="ph-${p.id}">
+          <span style="font-size:52px;line-height:1">${p.emoji||t.emoji}</span>
+        </div>
+        <img class="pap-real-img" id="img-${p.id}" style="opacity:0" alt="${p.name}">
+      </div>
+      <div class="pap-card-cat">${p.cat}</div>
+      <div class="pap-card-name">${p.name}</div>
+    </div>`;
+  }).join('');
+  renderPapCategories();
+  filterCat(papActiveCat, false);
+  // Lazy-load real product images
+  PAP_PRODUCTS.forEach(p => applyProductImg(p, document.getElementById(`img-${p.id}`), document.getElementById(`ph-${p.id}`)));
+}
+
+/* ══ PRICES VIEW ══ */
+function renderPricesView() {
+  papLoadPrices();
+  const theme = t => CAT_THEME[t] || { bg:'linear-gradient(135deg,#0C1A30,#1A3060)', emoji:'📦' };
+  const grid = document.getElementById('pap-grid');
+  grid.className = 'pap-grid pap-grid-prices';
+  grid.innerHTML = PAP_PRODUCTS.map(p => {
+    const t = theme(p.cat);
+    return `
+    <div class="pap-card pap-card-prices" data-id="${p.id}" data-cat="${p.cat}" data-name="${p.name.toLowerCase()}">
+      <div class="pap-prices-top">
+        <div class="pap-img-mini" style="background:${t.bg}" id="mph-${p.id}">
+          <span style="font-size:22px;line-height:1;position:relative;z-index:1">${p.emoji||t.emoji}</span>
+          <img class="pap-real-img" id="mimg-${p.id}" style="opacity:0;border-radius:8px" alt="${p.name}">
+        </div>
+        <div class="pap-prices-info">
+          <div class="pap-card-cat">${p.cat}</div>
+          <div class="pap-card-name">${p.name}</div>
+        </div>
+      </div>
+      <div class="pap-barcode-wrap"><svg id="bc-${p.id}"></svg></div>
+      <div class="pap-price-row">
+        <span class="pap-price-label">RD$</span>
+        <span class="pap-price" data-pid="${p.id}" id="pr-${p.id}">${p.price.toFixed(2)}</span>
+      </div>
+    </div>`;
+  }).join('');
+  // Render barcodes
+  PAP_PRODUCTS.forEach(p => renderBarcode(`#bc-${p.id}`, p.barcode));
+  renderPapCategories();
+  filterCat(papActiveCat, false);
+  // Lazy-load real product images
+  PAP_PRODUCTS.forEach(p => applyProductImg(p, document.getElementById(`mimg-${p.id}`), document.getElementById(`mph-${p.id}`)));
+}
+
+/* ══ PLASTIFICADO VIEW ══ */
+function renderPlastificadoView() {
+  const grid = document.getElementById('pap-grid');
+  grid.className = 'pap-plast-grid';
+  grid.innerHTML = PLASTIFICADO.map(s => `
+    <div class="pap-plast-card" data-id="${s.id}" data-name="${s.name.toLowerCase()}">
+      <div class="pap-plast-img" style="background:${s.bg}">
+        <span style="position:relative;z-index:1">${s.emoji}</span>
+      </div>
+      <div class="pap-plast-body">
+        <div class="pap-plast-name">${s.name}</div>
+        <div class="pap-plast-desc">${s.desc}</div>
+        <div class="pap-plast-price">
+          <span class="pap-plast-price-label">Precio</span>
+          <span class="pap-plast-price-val pap-price" data-pid="${s.id}" id="pr-${s.id}">RD$ ${s.price}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('pap-cats').innerHTML = '';
+}
+
+/* ── View switcher ── */
+function setPapView(view) {
+  papView = view;
+  document.getElementById('pap-search').value = '';
+  // Update tab buttons
+  ['catalog','prices','plastificado'].forEach(v => {
+    document.getElementById(`vbtn-${v}`).classList.toggle('active', v === view);
+  });
+  // Update title
+  const titles = { catalog:'🖼️ Catálogo', prices:'💰 Precios', plastificado:'🔲 Plastificado' };
+  document.getElementById('pap-page-title').textContent = titles[view];
+  // Show/hide category filter
+  document.getElementById('pap-cats').style.display = view === 'plastificado' ? 'none' : '';
+  // Render the view
+  if (view === 'catalog') renderCatalogView();
+  else if (view === 'prices') renderPricesView();
+  else renderPlastificadoView();
+}
+
+/* ── Category + search filters ── */
+function filterCat(cat, rerender = true) {
+  papActiveCat = cat;
+  if (rerender) renderPapCategories();
+  document.querySelectorAll('#pap-grid .pap-card').forEach(card => {
+    const match = cat === 'Todos' || card.dataset.cat === cat;
+    card.classList.toggle('pap-card-hidden', !match);
+  });
+}
+function filterProducts(q) {
+  const lower = q.toLowerCase();
+  if (papView === 'plastificado') {
+    document.querySelectorAll('.pap-plast-card').forEach(c => c.classList.toggle('pap-card-hidden', !c.dataset.name.includes(lower)));
+    return;
+  }
+  document.querySelectorAll('#pap-grid .pap-card').forEach(card => {
+    const catOk = papActiveCat === 'Todos' || card.dataset.cat === papActiveCat;
+    card.classList.toggle('pap-card-hidden', !catOk || !card.dataset.name.includes(lower));
+  });
+}
+
+/* ── Open / Close ── */
+function openPapeleria(view = 'catalog') {
+  document.getElementById('papeleria-page').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  setPapView(view);
+}
+function closePapeleria() {
+  document.getElementById('papeleria-page').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('papeleria-page').style.display !== 'none') closePapeleria();
+});
+
+/* ── Admin: editable prices in papelería ── */
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey && e.altKey && (e.key === 'e' || e.key === 'E')) {
+    setTimeout(() => {
+      const isAdmin = document.getElementById('admin-bar').style.display !== 'none';
+      document.querySelectorAll('.pap-price').forEach(el => {
+        el.contentEditable = isAdmin ? 'true' : 'false';
+        if (!isAdmin) {
+          const val = parseFloat(el.textContent.replace(/[^0-9.]/g, ''));
+          if (!isNaN(val)) el.textContent = (el.dataset.pid?.startsWith('pl') ? 'RD$ ' : '') + val.toFixed(2);
+        }
+      });
+      if (!isAdmin) papSavePrices();
+    }, 50);
+  }
+});
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   6. ADMIN EDIT MODE — Ctrl+Alt+E
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const ADMIN_KEY  = 'lcm_admin_edits';
+const EDIT_SELS  = [
+  '.hero-title', '.hero-subtitle',
+  '.service-title', '.service-desc',
+  '.contact-item-value', '.contact-item-label',
+  '.sched-day', '.sched-time', '.sched-note', '.sched-pill',
+  '.section-title', '.section-desc',
+  '.stat-num', '.stat-label',
+  '.about-text', '.about-name', '.about-role'
+];
+let adminActive = false;
+
+function adminToggle() {
+  adminActive = !adminActive;
+  const bar = document.getElementById('admin-bar');
+  bar.style.display = adminActive ? 'flex' : 'none';
+  document.querySelectorAll(EDIT_SELS.join(',')).forEach(el => {
+    el.contentEditable = adminActive ? 'true' : 'false';
+  });
+  if (!adminActive) adminLoad(); // reload saved on exit without saving
+}
+
+function adminSave() {
+  const saved = {};
+  document.querySelectorAll('[data-eid]').forEach(el => {
+    saved[el.dataset.eid] = el.innerHTML;
+  });
+  // Also save all editable elements by index
+  let idx = 0;
+  document.querySelectorAll(EDIT_SELS.join(',')).forEach(el => {
+    const key = 'el_' + (el.dataset.eid || idx++);
+    saved[key] = el.innerHTML;
+  });
+  localStorage.setItem(ADMIN_KEY, JSON.stringify(saved));
+  const btn = document.querySelector('.admin-save-btn');
+  if (btn) { btn.textContent = '✓ Guardado'; setTimeout(() => { btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-2px"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Guardar'; }, 1500); }
+}
+
+function adminLoad() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(ADMIN_KEY) || '{}');
+    if (!Object.keys(saved).length) return;
+    let idx = 0;
+    document.querySelectorAll(EDIT_SELS.join(',')).forEach(el => {
+      const key = 'el_' + (el.dataset.eid || idx++);
+      if (saved[key] !== undefined) el.innerHTML = saved[key];
+    });
+  } catch (_) {}
+}
+
+// Add numeric IDs to editable elements for reliable saving
+(function tagEditables() {
+  let idx = 0;
+  document.querySelectorAll(EDIT_SELS.join(',')).forEach(el => {
+    if (!el.dataset.eid) el.dataset.eid = 'e' + idx++;
+  });
+  adminLoad();
+})();
+
+// Keyboard shortcut: Ctrl+Alt+E
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey && e.altKey && (e.key === 'e' || e.key === 'E')) {
+    e.preventDefault();
+    adminToggle();
+  }
+});
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   6. PWA — Service Worker + Install Prompt
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+let _pwaDeferred = null;
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () =>
+    navigator.serviceWorker.register('./sw.js').catch(() => {})
+  );
+}
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  _pwaDeferred = e;
+  const btn = document.getElementById('pwa-install-btn');
+  if (btn) btn.style.display = 'inline-flex';
+});
+window.addEventListener('appinstalled', () => {
+  const btn = document.getElementById('pwa-install-btn');
+  if (btn) btn.style.display = 'none';
+  _pwaDeferred = null;
+});
+function pwaDoPinstall() {
+  if (!_pwaDeferred) return;
+  _pwaDeferred.prompt();
+  _pwaDeferred.userChoice.then(() => { _pwaDeferred = null; });
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   7. COPY ACCOUNT NUMBER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function copyAcc(btn, num) {
+  navigator.clipboard.writeText(num).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 12 4 10"/></svg>';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+    }, 2000);
+  }).catch(() => {
+    /* fallback for iOS */
+    const ta = document.createElement('textarea');
+    ta.value = num; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+}
+</script>
+
+</body>
+</html>
