@@ -172,6 +172,14 @@
       .hero-main-title { white-space: normal; }
     }
 
+    /* Mobile line-break inside hero title — hidden on desktop */
+    .hero-br-mobile { display: none; }
+    @media (max-width: 640px) {
+      .hero-br-mobile { display: block; line-height: 0; margin: 0; }
+      /* Smaller font so "Multiservicios" fits in one line on mobile */
+      .hero-main-title { font-size: clamp(2.15rem, 9vw, 6.5rem) !important; white-space: normal !important; }
+    }
+
     /* Each letter span */
     .title-letter {
       display: inline-block;
@@ -869,7 +877,10 @@
   <div class="hero-grid-bg"></div>
   <div class="hero-content">
     <div class="hero-badge">Centro de Internet &amp; Servicios Digitales y de Aprendizaje</div>
-    <h1 class="hero-main-title" id="hero-main-title">La Crema Multiservicios</h1>
+    <h1 class="hero-main-title" id="hero-main-title">
+      <span class="hero-title-line" data-line="La Crema">La Crema</span>
+      <span class="hero-title-line" data-line="Multiservicios">Multiservicios</span>
+    </h1>
     <p class="hero-subtitle">Centro de Internet &amp; Servicios Digitales y de Aprendizaje</p>
     <div class="hero-btns">
       <a href="#servicios" class="btn-primary">Ver servicios</a>
@@ -1554,6 +1565,15 @@
     titleEl.appendChild(span);
     spans.push(span);
   });
+
+  // Insert a mobile-only <br> between "La Crema" and "Multiservicios"
+  // "La Crema Multiservicios" → space between them is at index 8
+  if (spans[8]) {
+    const mobileBr = document.createElement('br');
+    mobileBr.className = 'hero-br-mobile';
+    // Insert before the 'M' of Multiservicios (index 9)
+    titleEl.insertBefore(mobileBr, spans[9]);
+  }
 
   function runCycle() {
     // ── PHASE 1: Erase right → left ──
